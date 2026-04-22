@@ -5,6 +5,8 @@
     .notif-btns { width: 100%; flex-wrap: wrap !important; }
 }
 
+@keyframes spin360 { to { transform: rotate(360deg); } }
+
 /* Card consulta glass */
 .card-consulta, .acao, .card-pontos {
     background: rgba(255,255,255,.55) !important;
@@ -107,10 +109,15 @@
 .tier:hover { opacity: 1 !important; filter: none !important; transform: translateY(-3px); }
 .tier-img {
     width: 48px !important; height: 48px !important;
-    background: transparent !important;
     box-shadow: 0 4px 12px rgba(15,23,42,.15) !important;
-    transition: transform .25s, box-shadow .3s !important;
+    transition: transform .25s, box-shadow .3s, background .3s !important;
 }
+.tier[data-tier="1"] .tier-img { background: linear-gradient(135deg, #b05a1a, #e08a40) !important; }
+.tier[data-tier="2"] .tier-img { background: linear-gradient(135deg, #556270, #8395a7) !important; }
+.tier[data-tier="3"] .tier-img { background: linear-gradient(135deg, #9a7d0a, #d4af37) !important; }
+.tier[data-tier="4"] .tier-img { background: linear-gradient(135deg, #0d47a1, #42a5f5) !important; }
+.tier[data-tier="5"] .tier-img { background: conic-gradient(from 0deg, #e84393, #fbbf24, #e84393) !important; }
+.tier[data-tier="6"] .tier-img { background: var(--rainbow-conic) !important; position: relative; }
 .tier.atual { opacity: 1 !important; filter: none !important; }
 .tier.atual .tier-img {
     transform: scale(1.12);
@@ -124,7 +131,6 @@
 
 /* ═══ LENDÁRIO - ARCO-ÍRIS ═══ */
 .tier[data-tier="6"] { position: relative; }
-.tier[data-tier="6"] .tier-img { position: relative; background: transparent !important; }
 .tier[data-tier="6"] .tier-img::before {
     content: ''; position: absolute; inset: -4px; border-radius: 50%;
     background: var(--rainbow-conic); z-index: -1;

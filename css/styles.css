@@ -7,6 +7,7 @@
     --rainbow-full: linear-gradient(90deg, #ff3b3b, #ff9500, #ffd60a, #34c759, #00c7be, #0a84ff, #5e5ce6, #bf5af2, #ff375f, #ff3b3b);
     --rainbow-conic: conic-gradient(from 0deg, #ff3b3b, #ff9500, #ffd60a, #34c759, #00c7be, #0a84ff, #5e5ce6, #bf5af2, #ff375f, #ff3b3b);
 }
+@keyframes spin360 { to { transform: rotate(360deg); } }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     font-family: 'Poppins', sans-serif; background: #eef2f8; color: #2d3748;
@@ -250,6 +251,12 @@ main { flex: 1; padding: 24px 32px 30px; }
     display: flex; align-items: center; justify-content: center;
     overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,.1); transition: transform .2s, box-shadow .3s;
 }
+.tier[data-tier="1"] .tier-img { background: linear-gradient(135deg, #b05a1a, #e08a40); }
+.tier[data-tier="2"] .tier-img { background: linear-gradient(135deg, #556270, #8395a7); }
+.tier[data-tier="3"] .tier-img { background: linear-gradient(135deg, #9a7d0a, #d4af37); }
+.tier[data-tier="4"] .tier-img { background: linear-gradient(135deg, #0d47a1, #42a5f5); }
+.tier[data-tier="5"] .tier-img { background: conic-gradient(from 0deg, #e84393, #fbbf24, #e84393); }
+.tier[data-tier="6"] .tier-img { background: var(--rainbow-conic); }
 .tier.ativo:hover .tier-img { transform: scale(1.1); }
 .tier-img img { width: 100%; height: 100%; object-fit: cover; }
 .tier b { font-size: .65rem; font-weight: 600; color: #475569; }
@@ -257,9 +264,7 @@ main { flex: 1; padding: 24px 32px 30px; }
 
 /* Tier Lendário */
 .tier[data-tier="6"].ativo .tier-img {
-    background: var(--rainbow) !important;
-    animation: rainbowShift 3s linear infinite;
-    background-size: 300% 300%;
+    background: var(--rainbow-conic) !important;
 }
 .tier[data-tier="6"].atual .tier-img {
     box-shadow: 0 0 0 2.5px #a78bfa, 0 0 16px rgba(167,139,250,.4);

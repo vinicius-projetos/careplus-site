@@ -114,24 +114,26 @@ body { transition: background .6s; }
 /* ═══ TIER SHOWCASE ═══ */
 .pg-tier-showcase { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; padding: 16px 0 10px; text-align: center; }
 .pg-tier-badge-wrap { position: relative; width: 90px; height: 90px; margin-bottom: 10px; transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
-.pg-tier-badge { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; background: #fff; display: block; position: relative; z-index: 2; box-shadow: 0 4px 16px rgba(15,23,42,.12); transition: box-shadow .4s; }
+.pg-tier-badge { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; background: linear-gradient(135deg, var(--cor), var(--cor2)); display: block; position: relative; z-index: 2; box-shadow: 0 4px 16px rgba(15,23,42,.12); transition: box-shadow .4s, background .4s; }
 .pg-tier-ring { position: absolute; inset: -4px; border-radius: 50%; z-index: 1; border: 3px solid var(--cor); opacity: .3; transition: all .4s; }
 .pg-tier-glow { position: absolute; inset: -12px; border-radius: 50%; z-index: 0; opacity: 0; transition: all .4s; filter: blur(14px); background: radial-gradient(circle, var(--cor2), transparent 70%); }
 .pg-tier-nome { font-size: 1.75rem; font-weight: 800; line-height: 1; letter-spacing: -.5px; background: linear-gradient(90deg, var(--cor), var(--cor2)); -webkit-background-clip: text; background-clip: text; color: transparent; transition: all .4s; }
 
+/* Tier 1 - Bronze */
+body[data-tier="1"] .pg-tier-badge { background: linear-gradient(135deg, #b05a1a, #e08a40); }
 /* Tier 2 - Prata */
 body[data-tier="2"] .pg-tier-ring { opacity: .5; border-color: #8395a7; }
 body[data-tier="2"] .pg-tier-glow { opacity: .2; }
-body[data-tier="2"] .pg-tier-badge { box-shadow: 0 4px 20px rgba(131,149,167,.3); }
+body[data-tier="2"] .pg-tier-badge { background: linear-gradient(135deg, #556270, #8395a7); box-shadow: 0 4px 20px rgba(131,149,167,.3); }
 /* Tier 3 - Ouro */
 body[data-tier="3"] .pg-tier-ring { opacity: .7; border-color: #d4af37; }
 body[data-tier="3"] .pg-tier-glow { opacity: .4; background: radial-gradient(circle, rgba(212,175,55,.6), transparent 70%); }
-body[data-tier="3"] .pg-tier-badge { box-shadow: 0 6px 24px rgba(212,175,55,.4); }
+body[data-tier="3"] .pg-tier-badge { background: linear-gradient(135deg, #9a7d0a, #d4af37); box-shadow: 0 6px 24px rgba(212,175,55,.4); }
 body[data-tier="3"] .pg-tier-badge-wrap, body[data-tier="4"] .pg-tier-badge-wrap { animation: float 3s ease-in-out infinite; }
 /* Tier 4 - Diamond */
 body[data-tier="4"] .pg-tier-ring { opacity: .8; border-color: #42a5f5; animation: spin360 4s linear infinite; }
 body[data-tier="4"] .pg-tier-glow { opacity: .5; background: radial-gradient(circle, rgba(66,165,245,.6), transparent 65%); animation: pulse 2s ease-in-out infinite; }
-body[data-tier="4"] .pg-tier-badge { box-shadow: 0 6px 28px rgba(13,71,161,.45), 0 0 40px rgba(66,165,245,.2); }
+body[data-tier="4"] .pg-tier-badge { background: linear-gradient(135deg, #0d47a1, #42a5f5); box-shadow: 0 6px 28px rgba(13,71,161,.45), 0 0 40px rgba(66,165,245,.2); }
 /* Tier 5 - Rubi */
 body[data-tier="5"] .pg-tier-ring {
     opacity: 1; border: none; inset: -5px;
@@ -140,7 +142,7 @@ body[data-tier="5"] .pg-tier-ring {
     -webkit-mask: radial-gradient(circle, transparent 62%, #000 63%); mask: radial-gradient(circle, transparent 62%, #000 63%);
 }
 body[data-tier="5"] .pg-tier-glow { opacity: .6; background: radial-gradient(circle, rgba(232,67,147,.5), rgba(251,191,36,.2), transparent 70%); animation: pulse 1.5s ease-in-out infinite; }
-body[data-tier="5"] .pg-tier-badge { box-shadow: 0 6px 28px rgba(155,16,80,.5), 0 0 50px rgba(232,67,147,.2); }
+body[data-tier="5"] .pg-tier-badge { background: conic-gradient(from 0deg, #e84393, #fbbf24, #e84393); box-shadow: 0 6px 28px rgba(155,16,80,.5), 0 0 50px rgba(232,67,147,.2); }
 body[data-tier="5"] .pg-tier-badge-wrap { animation: float 2.5s ease-in-out infinite; }
 /* Tier 6 - Lendário */
 body[data-tier="6"] .pg-tier-ring {
@@ -152,7 +154,7 @@ body[data-tier="6"] .pg-tier-glow {
     opacity: .7; inset: -18px; background: var(--rainbow-conic);
     animation: spin360 3s linear infinite, pulse 2s ease-in-out infinite; filter: blur(18px);
 }
-body[data-tier="6"] .pg-tier-badge { box-shadow: 0 6px 30px rgba(91,33,182,.5), 0 0 60px rgba(167,139,250,.25); }
+body[data-tier="6"] .pg-tier-badge { background: var(--rainbow-conic); box-shadow: 0 6px 30px rgba(91,33,182,.5), 0 0 60px rgba(167,139,250,.25); }
 body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infinite; }
 
 .pg-tier-selector {
@@ -162,8 +164,14 @@ body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infini
 .tier-ts {
     width: 38px; height: 38px; min-width: 38px; border-radius: 50%;
     object-fit: cover; cursor: pointer; opacity: .45; filter: grayscale(30%); transition: all .25s;
-    background: #fff; border: 2px solid transparent; box-shadow: 0 2px 8px rgba(15,23,42,.08);
+    background: linear-gradient(135deg, var(--cor), var(--cor2)); border: 2px solid transparent; box-shadow: 0 2px 8px rgba(15,23,42,.08);
 }
+.tier-ts[data-t="1"] { background: linear-gradient(135deg, #b05a1a, #e08a40); }
+.tier-ts[data-t="2"] { background: linear-gradient(135deg, #556270, #8395a7); }
+.tier-ts[data-t="3"] { background: linear-gradient(135deg, #9a7d0a, #d4af37); }
+.tier-ts[data-t="4"] { background: linear-gradient(135deg, #0d47a1, #42a5f5); }
+.tier-ts[data-t="5"] { background: conic-gradient(from 0deg, #e84393, #fbbf24, #e84393); }
+.tier-ts[data-t="6"] { background: var(--rainbow-conic); }
 .tier-ts:hover { opacity: 1; filter: none; transform: translateY(-3px) scale(1.1); }
 .tier-ts.active { opacity: 1; filter: none; transform: scale(1.15); border-color: var(--cor2); box-shadow: 0 0 0 2px var(--cor2), 0 6px 16px rgba(13,71,161,.35); }
 
