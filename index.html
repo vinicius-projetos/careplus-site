@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Plus - Home</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/home.css">
+</head>
+<body>
+
+<div class="bg-orbs">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+</div>
+
+<!-- Notificação -->
+<div class="notif" id="notif">
+    <div class="notif-inner">
+        <div class="notif-icon"><i class="bi bi-exclamation-circle"></i></div>
+        <p class="notif-msg">Há um <strong>alerta de trânsito</strong> na rota da sua consulta. Considere reagendar ou mudar para teleconsulta.</p>
+        <div class="notif-btns">
+            <button class="notif-btn">Reagendar</button>
+            <button class="notif-btn">Teleconsulta</button>
+            <button class="notif-btn primary">Confirmar presença</button>
+        </div>
+        <button class="notif-close" onclick="document.getElementById('notif').style.display='none'"><i class="bi bi-x-lg"></i></button>
+    </div>
+</div>
+
+<div class="layout">
+    <nav class="sidebar">
+        <div class="sb-logo">
+            <img src="assets/img/logo-icone.png" alt="" class="logo-icone">
+            <img src="assets/img/logo-texto.png" alt="Care Plus" class="logo-texto">
+        </div>
+        <div class="sb-badge"><i class="bi bi-clipboard-check"></i> BENEFICIÁRIO | <a href="#">SAIR</a></div>
+        <ul class="sb-menu">
+            <li class="active"><a href="index.html"><i class="bi bi-house-fill"></i> Home principal</a></li>
+            <li><a href="pages/perfil.html"><i class="bi bi-person-circle"></i> Minhas informações</a></li>
+            <li class="sub"><a href="#">Dados Cadastrais</a></li>
+            <li class="sub"><a href="#">Carteirinha</a></li>
+            <li class="sub"><a href="#">Utilização da rede</a></li>
+            <li class="sub"><a href="#">Declaração de Cobertura</a></li>
+            <li class="sub"><a href="#">Produtos</a></li>
+            <li class="sub"><a href="#">Autenticação com Serviços Web</a></li>
+            <li class="sub"><a href="#">Informe de IRPF</a></li>
+            <li class="sub"><a href="#">Privacidade</a></li>
+            <li class="sub"><a href="#">Portabilidade</a></li>
+            <li class="sep"></li>
+            <li><a href="#"><i class="bi bi-currency-dollar"></i> Reembolso</a></li>
+            <li><a href="#"><i class="bi bi-file-earmark-check"></i> Autorizações</a></li>
+            <li><a href="#"><i class="bi bi-search"></i> Busca de Rede Credenciada</a></li>
+            <li><a href="#"><i class="bi bi-emoji-smile"></i> Agendar Dentista</a></li>
+            <li><a href="#"><i class="bi bi-headset"></i> Central de Ajuda</a></li>
+            <li><a href="#"><i class="bi bi-cash-stack"></i> Coparticipação</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <div class="topbar">
+            <h1 class="greeting">Olá, Usuário</h1>
+            <div class="avatar-wrap" id="avatarWrap">
+                <div class="avatar" id="avatarBtn"><i class="bi bi-person-fill"></i></div>
+                <div class="avatar-dropdown" id="avatarDropdown">
+                    <div class="avatar-dropdown-header">
+                        <strong>Usuário</strong>
+                        <small>usuario@email.com</small>
+                    </div>
+                    <div class="avatar-dropdown-sep"></div>
+                    <a href="pages/perfil.html" class="avatar-dropdown-item"><i class="bi bi-person-circle"></i> Meu Perfil</a>
+                    <a href="#" class="avatar-dropdown-item"><i class="bi bi-gear"></i> Configurações</a>
+                    <a href="#" class="avatar-dropdown-item"><i class="bi bi-bell"></i> Notificações</a>
+                    <div class="avatar-dropdown-sep"></div>
+                    <a href="#" class="avatar-dropdown-item avatar-dropdown-logout"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid">
+            <div class="card-consulta">
+                <div class="consulta-topo">
+                    <div>
+                        <h3>Sua próxima consulta:</h3>
+                        <p><strong>Odontológia</strong></p>
+                        <p>Dra. Maria Silva</p>
+                        <p>31 de out ás 14:30</p>
+                        <p>Care Plus Clinic - Vila Olímpia</p>
+                        <p>R. Fidêncio Ramos, 302</p>
+                    </div>
+                    <div class="mascote">
+                        <div class="balao">Te vejo lá!</div>
+                        <div class="mascote-img"><img src="assets/img/mascote.gif" alt="Mascote"></div>
+                    </div>
+                </div>
+                <div class="consulta-btns">
+                    <button class="btn-azul" id="btnConfirm">Confirmar presença</button>
+                    <button class="btn-outline">Reagendar</button>
+                </div>
+            </div>
+
+            <div class="acoes">
+                <div class="acao"><i class="bi bi-calendar-plus"></i><span>Agendar consulta</span></div>
+                <div class="acao"><i class="bi bi-calendar-check"></i><span>Adicionar ao calendário</span></div>
+                <div class="acao"><i class="bi bi-geo-alt"></i><span>Ver clínicas próximas</span></div>
+                <a href="pages/pontos.html" class="acao"><i class="bi bi-gift"></i><span>Benefícios e pontos</span></a>
+            </div>
+        </div>
+
+        <div class="card-pontos">
+            <div class="pontos-topo">
+                <div class="pontos-info">
+                    <div class="pontos-mascote"><img id="tierAtualImg" src="assets/img/tiers/tier1.png" alt="Tier atual"></div>
+                    <div><b>4.500 pontos totais</b><br><small>250 pontos disponíveis</small></div>
+                </div>
+                <a href="pages/pontos.html" class="ver-tudo">Ver tudo <i class="bi bi-arrow-right"></i></a>
+            </div>
+            <div class="barra"><div class="barra-fill" style="width:75%"></div></div>
+            <p class="tiers-hint"><i class="bi bi-hand-index"></i> Clique em um tier para mudar o tema</p>
+            <div class="tiers">
+                <div class="tier ativo" data-tier="1" data-cor="#b05a1a" data-cor2="#e08a40" data-bg="#faf6f2">
+                    <div class="tier-img"><img src="assets/img/tiers/tier1.png" alt="Bronze"></div>
+                    <b>Bronze</b><small>0 pts</small>
+                </div>
+                <div class="tier ativo" data-tier="2" data-cor="#556270" data-cor2="#8395a7" data-bg="#f2f3f5">
+                    <div class="tier-img"><img src="assets/img/tiers/tier2.png" alt="Prata"></div>
+                    <b>Prata</b><small>1.000 pts</small>
+                </div>
+                <div class="tier ativo" data-tier="3" data-cor="#9a7d0a" data-cor2="#d4af37" data-bg="#faf8f0">
+                    <div class="tier-img"><img src="assets/img/tiers/tier3.png" alt="Ouro"></div>
+                    <b>Ouro</b><small>2.500 pts</small>
+                </div>
+                <div class="tier ativo" data-tier="4" data-cor="#0d47a1" data-cor2="#42a5f5" data-bg="#f0f5fb">
+                    <div class="tier-img"><img src="assets/img/tiers/tier4.png" alt="Diamante"></div>
+                    <b>Diamante</b><small>5.000 pts</small>
+                </div>
+                <div class="tier ativo" data-tier="5" data-cor="#9b1050" data-cor2="#e84393" data-bg="#fdf2f6">
+                    <div class="tier-img"><img src="assets/img/tiers/tier5.png" alt="Rubi"></div>
+                    <b>Rubi</b><small>10.000 pts</small>
+                </div>
+                <div class="tier ativo" data-tier="6" data-cor="#5b21b6" data-cor2="#a78bfa" data-bg="#f6f2fd">
+                    <div class="tier-img"><img src="assets/img/tiers/tier6.png" alt="Lendário"></div>
+                    <b>Lendário</b><small>25.000 pts</small>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal Presença Confirmada -->
+<div class="modal-glass confirm-modal" id="confirmModal" aria-hidden="true">
+    <div class="modal-glass-backdrop"></div>
+    <div class="modal-glass-card" role="dialog" aria-live="polite">
+        <div class="modal-glass-spinner confirm-spinner">
+            <svg viewBox="0 0 52 52" class="modal-glass-check-svg">
+                <circle class="modal-glass-check-circle" cx="26" cy="26" r="23" fill="none"/>
+                <path class="modal-glass-check-path" fill="none" d="M14 27 L23 36 L39 18"/>
+            </svg>
+        </div>
+        <h4 class="modal-glass-title confirm-title">Presença confirmada</h4>
+        <p class="modal-glass-sub">Te vejo lá!</p>
+    </div>
+</div>
+
+<div class="fab" id="helpFab">
+    <span>Precisa de ajuda?</span>
+    <div class="fab-icon"><i class="bi bi-question-lg"></i></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/shared.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>

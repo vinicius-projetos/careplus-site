@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Plus - Perfil</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/perfil.css">
+</head>
+<body>
+
+<div class="bg-orbs">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+</div>
+
+<div class="layout">
+    <nav class="sidebar">
+        <div class="sb-logo">
+            <img src="../assets/img/logo-icone.png" alt="" class="logo-icone">
+            <img src="../assets/img/logo-texto.png" alt="Care Plus" class="logo-texto">
+        </div>
+        <div class="sb-badge"><i class="bi bi-clipboard-check"></i> BENEFICIÁRIO | <a href="#">SAIR</a></div>
+        <ul class="sb-menu">
+            <li><a href="../index.html"><i class="bi bi-house-fill"></i> Home principal</a></li>
+            <li class="active"><a href="#"><i class="bi bi-person-circle"></i> Minhas informações</a></li>
+            <li class="sub"><a href="#">Dados Cadastrais</a></li>
+            <li class="sub"><a href="#">Carteirinha</a></li>
+            <li class="sub"><a href="#">Utilização da rede</a></li>
+            <li class="sub"><a href="#">Declaração de Cobertura</a></li>
+            <li class="sub"><a href="#">Produtos</a></li>
+            <li class="sub"><a href="#">Autenticação com Serviços Web</a></li>
+            <li class="sub"><a href="#">Informe de IRPF</a></li>
+            <li class="sub"><a href="#">Privacidade</a></li>
+            <li class="sub"><a href="#">Portabilidade</a></li>
+            <li class="sep"></li>
+            <li><a href="#"><i class="bi bi-currency-dollar"></i> Reembolso</a></li>
+            <li><a href="#"><i class="bi bi-file-earmark-check"></i> Autorizações</a></li>
+            <li><a href="#"><i class="bi bi-search"></i> Busca de Rede Credenciada</a></li>
+            <li><a href="#"><i class="bi bi-emoji-smile"></i> Agendar Dentista</a></li>
+            <li><a href="#"><i class="bi bi-headset"></i> Central de Ajuda</a></li>
+            <li><a href="#"><i class="bi bi-cash-stack"></i> Coparticipação</a></li>
+        </ul>
+    </nav>
+
+    <main class="p-4">
+        <!-- Topbar -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h1 class="greeting">Perfil</h1>
+            <div class="pf-pontos-bar d-flex align-items-center gap-2">
+                <img src="../assets/img/tiers/tier1.png" alt="Tier" class="rounded-circle" width="32" height="32">
+                <small><strong class="text-primary">250</strong> pontos disponíveis</small>
+                <div class="pf-barra"><div class="pf-barra-fill" style="width:75%"></div></div>
+                <span class="badge bg-light text-primary fw-bold">4.500</span>
+            </div>
+            <div class="avatar-wrap" id="avatarWrap">
+                <div class="avatar" id="avatarBtn"><i class="bi bi-person-fill"></i></div>
+                <div class="avatar-dropdown" id="avatarDropdown">
+                    <div class="avatar-dropdown-header">
+                        <strong>John Doe</strong>
+                        <small>john.doe@example.com.br</small>
+                    </div>
+                    <div class="avatar-dropdown-sep"></div>
+                    <a href="perfil.html" class="avatar-dropdown-item"><i class="bi bi-person-circle"></i> Meu Perfil</a>
+                    <a href="#" class="avatar-dropdown-item"><i class="bi bi-gear"></i> Configurações</a>
+                    <a href="#" class="avatar-dropdown-item"><i class="bi bi-bell"></i> Notificações</a>
+                    <div class="avatar-dropdown-sep"></div>
+                    <a href="#" class="avatar-dropdown-item avatar-dropdown-logout"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card Perfil Principal -->
+        <div class="glass-card p-4 mb-4">
+            <div class="d-flex align-items-center gap-3">
+                <div class="pf-avatar-grande rounded-circle bg-secondary-subtle d-flex align-items-center justify-content-center">
+                    <i class="bi bi-person-fill fs-1 text-secondary"></i>
+                </div>
+                <div class="flex-grow-1">
+                    <h3 class="fw-bold mb-0 pf-nome">John Doe</h3>
+                    <p class="text-muted mb-0 small pf-cargo">Project Manager</p>
+                    <p class="text-muted mb-0 small pf-local"><i class="bi bi-geo-alt"></i> São Paulo, Brasil</p>
+                </div>
+                <button class="btn btn-light btn-sm pf-btn-editar" data-section="perfil"><i class="bi bi-pencil me-1"></i>Editar</button>
+            </div>
+        </div>
+
+        <!-- Dados Pessoais -->
+        <div class="glass-card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">Dados pessoais</h5>
+                <button class="btn btn-light btn-sm pf-btn-editar" data-section="dados"><i class="bi bi-pencil me-1"></i>Editar</button>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">Nome</small>
+                    <span class="fw-medium">John Doe</span>
+                </div>
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">Sobrenome</small>
+                    <span class="fw-medium">Doe</span>
+                </div>
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">E-mail</small>
+                    <span class="fw-medium">John.doe@example.com.br</span>
+                </div>
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">Telefone</small>
+                    <span class="fw-medium">(11) 99999-0099</span>
+                </div>
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">WhatsApp</small>
+                    <span class="fw-medium">Sim</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preferências -->
+        <div class="glass-card p-4 mb-4">
+            <div class="d-flex justify-content-between align-items-center mb-3">
+                <h5 class="fw-bold mb-0">Preferências</h5>
+                <button class="btn btn-light btn-sm pf-btn-editar" data-section="preferencias"><i class="bi bi-pencil me-1"></i>Editar</button>
+            </div>
+            <div class="row g-3">
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">Canal de contato</small>
+                    <span class="fw-medium">WhatsApp</span>
+                </div>
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">Clínica favorita</small>
+                    <span class="fw-medium">Care Plus Clinic - Vila Olímpia</span>
+                </div>
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">Médicos favoritos</small>
+                    <span class="fw-medium">Luiz Silva<br>João Rodriges Silva</span>
+                </div>
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">Dia da Semana</small>
+                    <span class="fw-medium">Segunda - Feira</span>
+                </div>
+                <div class="col-md-4 pf-campo">
+                    <small class="text-muted text-uppercase fw-semibold d-block">Horários</small>
+                    <span class="fw-medium">10:00, 11:00</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estatísticas Pessoais -->
+        <div class="glass-card p-4">
+            <h5 class="fw-bold mb-3">Estatísticas pessoais</h5>
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <div class="pf-stat-card p-3 rounded-3 text-center">
+                        <small class="text-muted text-uppercase fw-semibold d-block mb-1">Consultas comparecidas</small>
+                        <span class="fs-4 fw-bold text-primary">55</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pf-stat-card p-3 rounded-3 text-center">
+                        <small class="text-muted text-uppercase fw-semibold d-block mb-1">Pontos</small>
+                        <span class="fs-5 fw-bold">4.500 pontos totais</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="pf-stat-card p-3 rounded-3 text-center">
+                        <small class="text-muted text-uppercase fw-semibold d-block mb-1">Taxa de assiduidade</small>
+                        <span class="fs-4 fw-bold text-success">100% <i class="bi bi-arrow-up-short"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Toast -->
+<div class="pf-toast" id="pfToast">
+    <i class="bi bi-check-circle-fill text-success"></i>
+    <span id="pfToastMsg" class="fw-semibold small">Salvo!</span>
+</div>
+
+<div class="fab" id="helpFab">
+    <span>Precisa de ajuda?</span>
+    <div class="fab-icon"><i class="bi bi-question-lg"></i></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/shared.js"></script>
+<script src="../js/perfil.js"></script>
+</body>
+</html>

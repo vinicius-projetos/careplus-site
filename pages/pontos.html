@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Care Plus - Benefícios e Pontos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/pontos.css">
+</head>
+<body data-tier="1">
+
+<div class="bg-orbs">
+    <span class="orb orb-1"></span>
+    <span class="orb orb-2"></span>
+    <span class="orb orb-3"></span>
+</div>
+
+<div class="layout">
+    <nav class="sidebar">
+        <div class="sb-logo">
+            <img src="../assets/img/logo-icone.png" alt="" class="logo-icone">
+            <img src="../assets/img/logo-texto.png" alt="Care Plus" class="logo-texto">
+        </div>
+        <div class="sb-badge"><i class="bi bi-clipboard-check"></i> BENEFICIÁRIO | <a href="#">SAIR</a></div>
+        <ul class="sb-menu">
+            <li><a href="../index.html"><i class="bi bi-house-fill"></i> Home principal</a></li>
+            <li class="sub active"><a href="pontos.html">Benefícios e pontos</a></li>
+            <li><a href="perfil.html"><i class="bi bi-person-circle"></i> Minhas informações</a></li>
+            <li class="sep"></li>
+            <li><a href="#"><i class="bi bi-currency-dollar"></i> Reembolso</a></li>
+            <li><a href="#"><i class="bi bi-headset"></i> Central de Ajuda</a></li>
+        </ul>
+    </nav>
+
+    <main class="p-4">
+        <!-- Hero -->
+        <div class="hero-row mb-4">
+            <div class="hero-banner glass text-white d-flex align-items-center justify-content-between p-4">
+                <div class="d-flex align-items-center gap-3">
+                    <div class="hero-mascote"><img src="../assets/img/cachorrao3.png" alt="Mascote"></div>
+                    <div>
+                        <h4 class="mb-0 fw-bold">Sua jornada de cuidado com a saúde</h4>
+                        <small class="opacity-75">Acumule pontos e troque por recompensas</small>
+                    </div>
+                </div>
+            </div>
+            <div class="avatar-wrap" id="avatarWrap">
+                <div class="avatar" id="avatarBtn"><i class="bi bi-person-fill"></i></div>
+                <div class="avatar-dropdown" id="avatarDropdown">
+                    <div class="avatar-dropdown-header">
+                        <strong>Usuário</strong>
+                        <small>usuario@email.com</small>
+                    </div>
+                    <div class="avatar-dropdown-sep"></div>
+                    <a href="perfil.html" class="avatar-dropdown-item"><i class="bi bi-person-circle"></i> Meu Perfil</a>
+                    <a href="#" class="avatar-dropdown-item"><i class="bi bi-gear"></i> Configurações</a>
+                    <a href="#" class="avatar-dropdown-item"><i class="bi bi-bell"></i> Notificações</a>
+                    <div class="avatar-dropdown-sep"></div>
+                    <a href="#" class="avatar-dropdown-item avatar-dropdown-logout"><i class="bi bi-box-arrow-right"></i> Sair</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Painel: Pontos + Tier -->
+        <div class="row g-3 mb-4">
+            <div class="col-lg-7">
+                <div class="glass-card h-100 p-4" style="position:relative">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <div class="d-flex align-items-center gap-2">
+                                <small class="text-muted text-uppercase fw-semibold">Pontos disponíveis</small>
+                                <button class="btn-help" id="btnHelp"><i class="bi bi-question-circle"></i></button>
+                            </div>
+                            <h2 class="fw-bold mt-1 mb-0 pg-big-num" id="ptsDisp">0</h2>
+                        </div>
+                        <span class="glass-badge" id="ptsFaltam"><i class="bi bi-lightning-fill me-1"></i>Faltam 0 pts</span>
+                    </div>
+
+                    <!-- Painel Como Funciona -->
+                    <div class="help-panel" id="helpPanel">
+                        <div class="help-panel-header">
+                            <h6 class="fw-bold mb-0"><i class="bi bi-info-circle me-2"></i>Como funciona</h6>
+                            <button class="help-panel-close" id="helpPanelClose"><i class="bi bi-x-lg"></i></button>
+                        </div>
+
+                        <div class="help-section">
+                            <div class="help-section-title"><i class="bi bi-coin"></i> Como ganhar pontos</div>
+                            <ul class="help-list">
+                                <li><strong>Consultas:</strong> ganhe 100 pts por consulta realizada</li>
+                                <li><strong>Check-ups:</strong> ganhe 200 pts por check-up completo</li>
+                                <li><strong>Presença:</strong> confirme presença e ganhe 50 pts</li>
+                                <li><strong>Teleconsulta:</strong> ganhe 80 pts por sessão online</li>
+                            </ul>
+                        </div>
+
+                        <div class="help-section">
+                            <div class="help-section-title"><i class="bi bi-trophy"></i> Tiers e benefícios</div>
+                            <div class="help-tiers">
+                                <div class="help-tier-row"><span class="help-tier-dot" style="background:#b05a1a"></span><strong>Bronze</strong><span class="text-muted">0 pts</span></div>
+                                <div class="help-tier-row"><span class="help-tier-dot" style="background:#8395a7"></span><strong>Prata</strong><span class="text-muted">1.000 pts</span></div>
+                                <div class="help-tier-row"><span class="help-tier-dot" style="background:#d4af37"></span><strong>Ouro</strong><span class="text-muted">2.500 pts</span></div>
+                                <div class="help-tier-row"><span class="help-tier-dot" style="background:#42a5f5"></span><strong>Diamond</strong><span class="text-muted">5.000 pts</span></div>
+                                <div class="help-tier-row"><span class="help-tier-dot" style="background:#e84393"></span><strong>Rubi</strong><span class="text-muted">10.000 pts</span></div>
+                                <div class="help-tier-row"><span class="help-tier-dot" style="background:#a78bfa"></span><strong>Lendário</strong><span class="text-muted">25.000 pts</span></div>
+                            </div>
+                        </div>
+
+                        <div class="help-section">
+                            <div class="help-section-title"><i class="bi bi-gift"></i> Recompensas</div>
+                            <p class="help-text">Use seus pontos disponíveis para resgatar recompensas exclusivas como consultas, sessões de terapia e muito mais. Quanto maior o tier, mais recompensas são desbloqueadas!</p>
+                        </div>
+                    </div>
+                    <hr class="opacity-25">
+                    <div class="d-flex justify-content-between align-items-end mb-2">
+                        <div>
+                            <small class="text-muted text-uppercase fw-semibold">Pontos totais</small>
+                            <div class="fw-bold fs-5" id="ptsTotais">0</div>
+                        </div>
+                        <div class="debug-area" id="debugArea">
+                            <span class="debug-label"><i class="bi bi-bug"></i> Debug</span>
+                            <button class="btn-debug" id="btnDebug100">+100</button>
+                            <button class="btn-debug" id="btnDebug500">+500</button>
+                            <button class="btn-debug" id="btnDebug1000">+1000</button>
+                            <button class="btn-debug danger" id="btnDebugReset">Reset</button>
+                        </div>
+                    </div>
+                    <div class="pg-progress">
+                        <div class="pg-progress-fill" id="progressFill" style="width:0%"></div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-2">
+                        <small class="text-muted" id="tierAtualLabel">Bronze</small>
+                        <small class="fw-bold text-tier" id="tierProxLabel">1.000 pts → Prata</small>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-5">
+                <div class="glass-card h-100 p-4 d-flex flex-column pg-tier-card">
+                    <small class="text-muted text-uppercase fw-semibold" style="letter-spacing:1px">Seu tier</small>
+                    <div class="pg-tier-showcase">
+                        <div class="pg-tier-badge-wrap" id="tierBadgeWrap">
+                            <div class="pg-tier-ring"></div>
+                            <div class="pg-tier-glow"></div>
+                            <img id="tierBadge" src="../assets/img/tiers/tier1.png" alt="" class="pg-tier-badge">
+                        </div>
+                        <span id="tierNome" class="pg-tier-nome">Bronze</span>
+                        <div class="small text-muted" id="tierSub">Faltam 1.000 pts para Prata</div>
+                    </div>
+                    <div class="pg-tier-selector mt-auto">
+                        <img class="tier-ts active" data-t="1" data-nome="Bronze" src="../assets/img/tiers/tier1.png" alt="Bronze">
+                        <img class="tier-ts" data-t="2" data-nome="Prata" src="../assets/img/tiers/tier2.png" alt="Prata">
+                        <img class="tier-ts" data-t="3" data-nome="Ouro" src="../assets/img/tiers/tier3.png" alt="Ouro">
+                        <img class="tier-ts" data-t="4" data-nome="Diamond" src="../assets/img/tiers/tier4.png" alt="Diamond">
+                        <img class="tier-ts" data-t="5" data-nome="Rubi" src="../assets/img/tiers/tier5.png" alt="Rubi">
+                        <img class="tier-ts" data-t="6" data-nome="Lendário" src="../assets/img/tiers/tier6.png" alt="Lendário">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Recompensas e Ranking -->
+        <div class="row g-3">
+            <div class="col-lg-7">
+                <h6 class="fw-semibold mb-3"><i class="bi bi-gift me-2 text-tier"></i>Recompensas</h6>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa" data-nome="Limpeza Gratuita" data-custo="3.000">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon"><i class="bi bi-emoji-smile"></i></div>
+                                <span class="glass-badge sm"><i class="bi bi-coin me-1"></i>3.000</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Limpeza Gratuita</h6>
+                            <p class="small text-muted mb-3">Limpeza dentária completa</p>
+                            <button class="btn-glass primary w-100 btn-resgatar">Resgatar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa" data-nome="Check-up Premium" data-custo="4.000">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon"><i class="bi bi-heart-pulse"></i></div>
+                                <span class="glass-badge sm"><i class="bi bi-coin me-1"></i>4.000</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Check-up Premium</h6>
+                            <p class="small text-muted mb-3">Exames completos</p>
+                            <button class="btn-glass primary w-100 btn-resgatar">Resgatar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa" data-nome="Consulta Nutricionista" data-custo="2.500">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon"><i class="bi bi-apple"></i></div>
+                                <span class="glass-badge sm"><i class="bi bi-coin me-1"></i>2.500</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Nutricionista</h6>
+                            <p class="small text-muted mb-3">Consulta com plano alimentar</p>
+                            <button class="btn-glass primary w-100 btn-resgatar">Resgatar</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="row g-3 rec-extras" id="recExtras">
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa" data-nome="Academia 1 Mês" data-custo="3.500">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon"><i class="bi bi-bicycle"></i></div>
+                                <span class="glass-badge sm"><i class="bi bi-coin me-1"></i>3.500</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Academia 1 Mês</h6>
+                            <p class="small text-muted mb-3">Rede conveniada</p>
+                            <button class="btn-glass primary w-100 btn-resgatar">Resgatar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa" data-nome="Sessão Psicóloga" data-custo="2.800">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon"><i class="bi bi-chat-heart"></i></div>
+                                <span class="glass-badge sm"><i class="bi bi-coin me-1"></i>2.800</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Psicoterapia</h6>
+                            <p class="small text-muted mb-3">Sessão online ou presencial</p>
+                            <button class="btn-glass primary w-100 btn-resgatar">Resgatar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa" data-nome="Massagem Terapêutica" data-custo="3.200">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon"><i class="bi bi-droplet"></i></div>
+                                <span class="glass-badge sm"><i class="bi bi-coin me-1"></i>3.200</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Massagem</h6>
+                            <p class="small text-muted mb-3">Relaxante terapêutica</p>
+                            <button class="btn-glass primary w-100 btn-resgatar">Resgatar</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa locked" data-nome="Spa Relaxante" data-custo="5.500">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon disabled"><i class="bi bi-stars"></i></div>
+                                <span class="glass-badge sm muted"><i class="bi bi-lock-fill me-1"></i>5.500</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Spa Relaxante</h6>
+                            <p class="small text-muted mb-3">Sessão de spa exclusiva</p>
+                            <button class="btn-glass w-100" disabled>Faltam 2.500 pts</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa locked" data-nome="Viagem Saúde" data-custo="8.000">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon disabled"><i class="bi bi-airplane"></i></div>
+                                <span class="glass-badge sm muted"><i class="bi bi-lock-fill me-1"></i>8.000</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Retiro Bem-estar</h6>
+                            <p class="small text-muted mb-3">Fim de semana em resort</p>
+                            <button class="btn-glass w-100" disabled>Faltam 5.000 pts</button>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="glass-card h-100 p-3 pg-recompensa locked" data-nome="Kit Premium" data-custo="6.500">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <div class="pg-rec-icon disabled"><i class="bi bi-box-seam"></i></div>
+                                <span class="glass-badge sm muted"><i class="bi bi-lock-fill me-1"></i>6.500</span>
+                            </div>
+                            <h6 class="fw-bold mb-1">Kit Saúde Premium</h6>
+                            <p class="small text-muted mb-3">Vitaminas e suplementos</p>
+                            <button class="btn-glass w-100" disabled>Faltam 3.500 pts</button>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-ver-mais" id="btnVerMais">
+                    <span>Ver mais recompensas</span>
+                    <i class="bi bi-chevron-down"></i>
+                </button>
+            </div>
+
+            <div class="col-lg-5">
+                <h6 class="fw-semibold mb-3"><i class="bi bi-trophy me-2 text-warning"></i>Ranking</h6>
+                <div class="glass-card rank-card p-3">
+                    <div class="rank-podium">
+                        <div class="podium-item second">
+                            <div class="podium-avatar"><i class="bi bi-person-fill"></i></div>
+                            <span class="podium-medal"><i class="bi bi-award-fill"></i></span>
+                            <div class="podium-name">Dona Maria</div>
+                            <div class="podium-tier">Diamond</div>
+                            <div class="podium-pts"><i class="bi bi-coin"></i> 4.500</div>
+                            <div class="podium-bar bar-2">2</div>
+                        </div>
+                        <div class="podium-item first">
+                            <div class="podium-avatar crown"><i class="bi bi-person-fill"></i></div>
+                            <span class="podium-medal"><i class="bi bi-trophy-fill"></i></span>
+                            <div class="podium-name">Sr João</div>
+                            <div class="podium-tier">Rubi</div>
+                            <div class="podium-pts"><i class="bi bi-coin"></i> 5.000</div>
+                            <div class="podium-bar bar-1">1</div>
+                        </div>
+                        <div class="podium-item third">
+                            <div class="podium-avatar"><i class="bi bi-person-fill"></i></div>
+                            <span class="podium-medal"><i class="bi bi-award-fill"></i></span>
+                            <div class="podium-name">Pedro</div>
+                            <div class="podium-tier">Ouro</div>
+                            <div class="podium-pts"><i class="bi bi-coin"></i> 4.300</div>
+                            <div class="podium-bar bar-3">3</div>
+                        </div>
+                    </div>
+                    <div class="rank-list">
+                        <div class="rank-row me-row">
+                            <span class="rank-pos">4</span>
+                            <div class="rank-avatar"><i class="bi bi-person-fill"></i></div>
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold">Você <span class="rank-you-badge">Você</span></div>
+                                <small class="text-muted">Diamond</small>
+                            </div>
+                            <strong class="rank-pts"><i class="bi bi-coin me-1"></i>3.900</strong>
+                        </div>
+                        <div class="rank-row">
+                            <span class="rank-pos">5</span>
+                            <div class="rank-avatar"><i class="bi bi-person-fill"></i></div>
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold">Marcelo</div>
+                                <small class="text-muted">Ouro</small>
+                            </div>
+                            <strong class="rank-pts"><i class="bi bi-coin me-1"></i>3.800</strong>
+                        </div>
+                        <div class="rank-row">
+                            <span class="rank-pos">6</span>
+                            <div class="rank-avatar"><i class="bi bi-person-fill"></i></div>
+                            <div class="flex-grow-1">
+                                <div class="fw-semibold">Marta</div>
+                                <small class="text-muted">Prata</small>
+                            </div>
+                            <strong class="rank-pts"><i class="bi bi-coin me-1"></i>3.200</strong>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Modal Tier Up -->
+<div class="tierup-modal" id="tierUpModal" aria-hidden="true">
+    <div class="tierup-backdrop"></div>
+    <div class="tierup-card">
+        <div class="tierup-particles" id="tierUpParticles"></div>
+        <div class="tierup-badge-wrap">
+            <img id="tierUpImg" src="../assets/img/tiers/tier1.png" alt="" class="tierup-badge">
+        </div>
+        <div class="tierup-star"><i class="bi bi-stars"></i></div>
+        <h3 class="tierup-title">Tier Up!</h3>
+        <p class="tierup-nome" id="tierUpNome">Bronze</p>
+        <p class="tierup-sub" id="tierUpSub">Continue acumulando pontos!</p>
+    </div>
+</div>
+
+<!-- Modal Resgate -->
+<div class="modal-glass reward-modal" id="rewardModal" aria-hidden="true">
+    <div class="modal-glass-backdrop"></div>
+    <div class="modal-glass-card reward-modal-card" role="dialog" aria-live="polite">
+        <div class="modal-glass-spinner reward-spinner">
+            <div class="reward-gift"><i class="bi bi-gift-fill"></i></div>
+            <svg viewBox="0 0 52 52" class="modal-glass-check-svg reward-check-svg">
+                <circle class="modal-glass-check-circle reward-check-circle" cx="26" cy="26" r="23" fill="none"/>
+                <path class="modal-glass-check-path reward-check-path" fill="none" d="M14 27 L23 36 L39 18"/>
+            </svg>
+        </div>
+        <h4 class="modal-glass-title reward-title">Recompensa resgatada!</h4>
+        <p class="modal-glass-sub reward-sub" id="rewardSub">Aproveite seu benefício</p>
+        <div class="reward-badge"><i class="bi bi-coin"></i> <span id="rewardPts">-3.000 pts</span></div>
+    </div>
+</div>
+
+<div class="mascote-float" id="mascoteFloat">
+    <div class="mascote-balao" id="mascoteBalao">Continue assim! 🐾</div>
+    <div class="mascote-avatar">
+        <img src="../assets/img/mascote2.gif" alt="Mascote" class="mascote-img">
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="../js/shared.js"></script>
+<script src="../js/pontos.js"></script>
+</body>
+</html>

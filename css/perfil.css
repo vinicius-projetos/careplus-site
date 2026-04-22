@@ -1,0 +1,77 @@
+/* ═══ PERFIL ═══ */
+
+.glass-card.editando { border-color: rgba(0,59,113,.2); }
+
+/* Avatar grande */
+.pf-avatar-grande { width: 80px; height: 80px; flex-shrink: 0; }
+
+/* Barra de pontos no topbar */
+.pf-pontos-bar {
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 16px;
+    padding: 8px 16px;
+}
+.pf-barra {
+    width: 100px; height: 6px;
+    background: rgba(15,23,42,.08);
+    border-radius: 6px; overflow: hidden;
+}
+.pf-barra-fill {
+    height: 100%; border-radius: 6px;
+    background: linear-gradient(90deg, var(--cor), var(--cor2));
+}
+
+/* Stats */
+.pf-stat-card {
+    background: rgba(255,255,255,.45);
+    border: 1px solid rgba(255,255,255,.6);
+    transition: transform .2s;
+}
+.pf-stat-card:hover { transform: translateY(-2px); }
+
+/* Input de edição */
+.pf-input {
+    width: 100%;
+    background: rgba(255,255,255,.7);
+    border: 1.5px solid rgba(0,59,113,.15);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: .85rem;
+    font-family: inherit;
+    outline: none;
+    transition: border-color .2s;
+}
+.pf-input:focus { border-color: var(--cor); box-shadow: 0 0 0 3px rgba(0,59,113,.1); }
+.pf-textarea { resize: vertical; min-height: 55px; }
+
+/* Botão salvar */
+.pf-btn-editar.salvando {
+    background: #16a34a !important;
+    color: #fff !important;
+    border-color: #16a34a !important;
+}
+
+/* Toast */
+.pf-toast {
+    position: fixed; bottom: 90px; right: 24px;
+    background: rgba(255,255,255,.85);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 14px;
+    padding: 12px 20px;
+    display: flex; align-items: center; gap: 10px;
+    box-shadow: 0 8px 32px rgba(15,23,42,.12);
+    z-index: 9999;
+    opacity: 0; transform: translateY(20px);
+    pointer-events: none;
+    transition: opacity .3s, transform .3s;
+}
+.pf-toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+
+/* Responsivo */
+@media (max-width: 768px) {
+    .sidebar { display: none; }
+    .pf-pontos-bar { display: none !important; }
+}
