@@ -1,4 +1,4 @@
-/* ═══ CORES POR TIER ═══ */
+/* cores de cada tier */
 :root { --cor: #0d47a1; --cor2: #42a5f5; }
 body[data-tier="1"] { --cor: #b05a1a; --cor2: #e08a40; }
 body[data-tier="2"] { --cor: #556270; --cor2: #8395a7; }
@@ -11,7 +11,7 @@ body { transition: background .6s; }
 .text-tier { color: var(--cor) !important; }
 .glass-card:hover { transform: translateY(-3px); }
 
-/* ═══ ANIMAÇÕES REUTILIZAVEIS ═══ */
+/* animacoes que repetem em varios lugares */
 @keyframes spin360 { to { transform: rotate(360deg); } }
 @keyframes pulse { 0%,100% { opacity: .3; transform: scale(1); } 50% { opacity: .7; transform: scale(1.1); } }
 @keyframes float { 50% { transform: translateY(-6px); } }
@@ -19,7 +19,7 @@ body { transition: background .6s; }
 @keyframes rainbow { to { background-position: 300% center; } }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* ═══ GLASS COMPONENTS ═══ */
+/* coisas com efeito de vidro */
 .glass-badge {
     display: inline-flex; align-items: center; padding: 6px 12px; font-size: .78rem; font-weight: 600; color: var(--cor);
     background: linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,.3)); backdrop-filter: blur(10px);
@@ -42,7 +42,7 @@ body { transition: background .6s; }
     border: 1px solid transparent !important; box-shadow: 0 4px 14px rgba(22,163,74,.4) !important; cursor: default; opacity: 1 !important;
 }
 
-/* ═══ HERO ═══ */
+/* banner do topo */
 .hero-row { position: relative; }
 .hero-row > .avatar-wrap { position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 5; }
 .hero-banner {
@@ -58,7 +58,7 @@ body { transition: background .6s; }
 }
 .hero-mascote img { width: 100%; height: 100%; object-fit: cover; }
 
-/* ═══ BOTÃO AJUDA + PAINEL ═══ */
+/* botao de ajuda e o painelzinho */
 .btn-help {
     width: 20px; height: 20px; border-radius: 50%; padding: 0;
     background: rgba(255,255,255,.5); color: #94a3b8; font-size: .7rem;
@@ -101,7 +101,7 @@ body { transition: background .6s; }
 .help-tier-row .text-muted { font-size: .7rem; }
 .help-text { font-size: .75rem; color: #475569; line-height: 1.6; margin: 0; }
 
-/* ═══ PONTOS ═══ */
+/* numeros de pontos e barra de progresso */
 .pg-big-num { background: linear-gradient(135deg, var(--cor), var(--cor2)); -webkit-background-clip: text; background-clip: text; color: transparent; font-size: 2.5rem; }
 .pg-progress { height: 12px; border-radius: 999px; overflow: hidden; background: rgba(15,23,42,.06); box-shadow: inset 0 2px 4px rgba(15,23,42,.08); }
 .pg-progress-fill {
@@ -111,7 +111,7 @@ body { transition: background .6s; }
 }
 .pg-progress-fill::after { content: ''; position: absolute; inset: 0; background: linear-gradient(90deg, transparent, rgba(255,255,255,.5), transparent); animation: shimmer 2.5s infinite; }
 
-/* ═══ TIER SHOWCASE ═══ */
+/* card que mostra o tier do usuario */
 .pg-tier-showcase { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; padding: 16px 0 10px; text-align: center; }
 .pg-tier-badge-wrap { position: relative; width: 90px; height: 90px; margin-bottom: 10px; transition: transform .4s cubic-bezier(.34,1.56,.64,1); }
 .pg-tier-badge { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; background: linear-gradient(135deg, var(--cor), var(--cor2)); display: block; position: relative; z-index: 2; box-shadow: 0 4px 16px rgba(15,23,42,.12); transition: box-shadow .4s, background .4s; }
@@ -119,22 +119,22 @@ body { transition: background .6s; }
 .pg-tier-glow { position: absolute; inset: -12px; border-radius: 50%; z-index: 0; opacity: 0; transition: all .4s; filter: blur(14px); background: radial-gradient(circle, var(--cor2), transparent 70%); }
 .pg-tier-nome { font-size: 1.75rem; font-weight: 800; line-height: 1; letter-spacing: -.5px; background: linear-gradient(90deg, var(--cor), var(--cor2)); -webkit-background-clip: text; background-clip: text; color: transparent; transition: all .4s; }
 
-/* Tier 1 - Bronze */
+/* tier 1 - bronze */
 body[data-tier="1"] .pg-tier-badge { background: linear-gradient(135deg, #b05a1a, #e08a40); }
-/* Tier 2 - Prata */
+/* tier 2 - prata */
 body[data-tier="2"] .pg-tier-ring { opacity: .5; border-color: #8395a7; }
 body[data-tier="2"] .pg-tier-glow { opacity: .2; }
 body[data-tier="2"] .pg-tier-badge { background: linear-gradient(135deg, #556270, #8395a7); box-shadow: 0 4px 20px rgba(131,149,167,.3); }
-/* Tier 3 - Ouro */
+/* tier 3 - ouro */
 body[data-tier="3"] .pg-tier-ring { opacity: .7; border-color: #d4af37; }
 body[data-tier="3"] .pg-tier-glow { opacity: .4; background: radial-gradient(circle, rgba(212,175,55,.6), transparent 70%); }
 body[data-tier="3"] .pg-tier-badge { background: linear-gradient(135deg, #9a7d0a, #d4af37); box-shadow: 0 6px 24px rgba(212,175,55,.4); }
 body[data-tier="3"] .pg-tier-badge-wrap, body[data-tier="4"] .pg-tier-badge-wrap { animation: float 3s ease-in-out infinite; }
-/* Tier 4 - Diamond */
+/* tier 4 - diamante */
 body[data-tier="4"] .pg-tier-ring { opacity: .8; border-color: #42a5f5; animation: spin360 4s linear infinite; }
 body[data-tier="4"] .pg-tier-glow { opacity: .5; background: radial-gradient(circle, rgba(66,165,245,.6), transparent 65%); animation: pulse 2s ease-in-out infinite; }
 body[data-tier="4"] .pg-tier-badge { background: linear-gradient(135deg, #0d47a1, #42a5f5); box-shadow: 0 6px 28px rgba(13,71,161,.45), 0 0 40px rgba(66,165,245,.2); }
-/* Tier 5 - Rubi */
+/* tier 5 - rubi */
 body[data-tier="5"] .pg-tier-ring {
     opacity: 1; border: none; inset: -5px;
     background: conic-gradient(from 0deg, #e84393, #fbbf24, #e84393);
@@ -144,7 +144,7 @@ body[data-tier="5"] .pg-tier-ring {
 body[data-tier="5"] .pg-tier-glow { opacity: .6; background: radial-gradient(circle, rgba(232,67,147,.5), rgba(251,191,36,.2), transparent 70%); animation: pulse 1.5s ease-in-out infinite; }
 body[data-tier="5"] .pg-tier-badge { background: conic-gradient(from 0deg, #e84393, #fbbf24, #e84393); box-shadow: 0 6px 28px rgba(155,16,80,.5), 0 0 50px rgba(232,67,147,.2); }
 body[data-tier="5"] .pg-tier-badge-wrap { animation: float 2.5s ease-in-out infinite; }
-/* Tier 6 - Lendário */
+/* tier 6 - lendario */
 body[data-tier="6"] .pg-tier-ring {
     opacity: 1; border: none; inset: -5px;
     background: var(--rainbow-conic); animation: spin360 2s linear infinite;
@@ -175,7 +175,7 @@ body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infini
 .tier-ts:hover { opacity: 1; filter: none; transform: translateY(-3px) scale(1.1); }
 .tier-ts.active { opacity: 1; filter: none; transform: scale(1.15); border-color: var(--cor2); box-shadow: 0 0 0 2px var(--cor2), 0 6px 16px rgba(13,71,161,.35); }
 
-/* ═══ RECOMPENSAS ═══ */
+/* cards de recompensas */
 .pg-rec-icon {
     width: 44px; height: 44px; border-radius: 14px; background: linear-gradient(135deg, var(--cor), var(--cor2));
     color: #fff; font-size: 1.3rem; display: flex; align-items: center; justify-content: center;
@@ -192,7 +192,7 @@ body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infini
 .pg-recompensa.resgatado .glass-badge { color: #15803d; border-color: rgba(22,163,74,.3); background: rgba(22,163,74,.1); }
 .pg-recompensa.resgatado { border-color: rgba(22,163,74,.3) !important; }
 
-/* Ver mais */
+/* botao de ver mais recompensas */
 .rec-extras { display: none; }
 .rec-extras.show { display: flex; animation: fadeUp .4s ease; }
 .btn-ver-mais {
@@ -211,7 +211,7 @@ body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infini
 .pg-recompensa.resgatando { animation: cardPulse .9s cubic-bezier(.34,1.56,.64,1); }
 @keyframes cardPulse { 0%{transform:scale(1)} 35%{transform:scale(1.04); box-shadow:0 20px 50px rgba(22,163,74,.3)} 100%{transform:scale(1)} }
 
-/* ═══ RANKING ═══ */
+/* ranking dos usuarios */
 .rank-card { overflow: hidden; }
 .rank-podium { display: flex; align-items: flex-end; justify-content: center; gap: 8px; padding: 20px 10px 0; margin-bottom: 10px; }
 .podium-item { display: flex; flex-direction: column; align-items: center; text-align: center; position: relative; flex: 1; }
@@ -246,7 +246,7 @@ body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infini
 .bar-2 { height: 50px; background: linear-gradient(180deg, #94a3b8, #64748b); box-shadow: inset 0 2px 0 rgba(255,255,255,.3); }
 .bar-3 { height: 36px; background: linear-gradient(180deg, #d97706, #78350f); box-shadow: inset 0 2px 0 rgba(255,255,255,.25); }
 
-/* Lista ranking */
+/* lista do ranking (4, 5, 6...) */
 .rank-list { border-top: 1px solid rgba(15,23,42,.06); padding-top: 4px; }
 .rank-row { display: flex; align-items: center; gap: 12px; padding: 10px 12px; margin: 2px 0; border-radius: 14px; transition: all .25s; }
 .rank-row:hover { background: rgba(255,255,255,.5); transform: translateX(4px); }
@@ -259,7 +259,7 @@ body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infini
 .rank-row.me-row .rank-pos { background: linear-gradient(135deg, var(--cor), var(--cor2)); color: #fff; box-shadow: 0 3px 10px rgba(13,71,161,.3); }
 .rank-row.me-row .rank-avatar { background: linear-gradient(135deg, var(--cor), var(--cor2)); }
 
-/* ═══ MASCOTE FLUTUANTE ═══ */
+/* mascote que fica flutuando na tela */
 .mascote-float { position: fixed; bottom: 24px; right: 24px; z-index: 1000; cursor: grab; display: flex; flex-direction: column; align-items: flex-end; gap: 10px; }
 .mascote-float.dragging { cursor: grabbing; }
 .mascote-avatar {
@@ -277,7 +277,7 @@ body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infini
 }
 .mascote-balao.hidden { opacity: 0; transform: translateY(6px); }
 
-/* ═══ MODAL RESGATE ═══ */
+/* modal quando resgata recompensa */
 .reward-modal-card { min-width: 320px; padding: 34px 44px 28px; box-shadow: 0 20px 60px rgba(15,23,42,.25), 0 4px 20px rgba(22,163,74,.18), inset 0 1px 0 rgba(255,255,255,.9); }
 .reward-modal-card::before { content: ''; position: absolute; inset: -2px; border-radius: 28px; background: linear-gradient(135deg, rgba(34,197,94,.4), rgba(251,191,36,.3), transparent 60%); z-index: -1; filter: blur(22px); opacity: .65; }
 .reward-spinner { width: 78px; height: 78px; }
@@ -300,7 +300,7 @@ body[data-tier="6"] .pg-tier-badge-wrap { animation: float 2s ease-in-out infini
 .reward-badge { display:inline-flex; align-items:center; gap:6px; padding:6px 14px; border-radius:999px; background:linear-gradient(135deg, rgba(251,191,36,.2), rgba(34,197,94,.2)); border:1px solid rgba(251,191,36,.4); color:#b45309; font-weight:700; font-size:.8rem; box-shadow:inset 0 1px 0 rgba(255,255,255,.8); }
 .reward-badge i { color: #d97706; }
 
-/* ═══ TIER 6 LENDÁRIO OVERRIDES ═══ */
+/* coisas extras do tier lendario */
 body[data-tier="6"] .pg-tier-nome, body[data-tier="6"] .pg-big-num, body[data-tier="6"] .text-tier {
     background: var(--rainbow) !important; background-size: 300% auto !important;
     -webkit-background-clip: text !important; background-clip: text !important;
@@ -320,7 +320,7 @@ body[data-tier="6"] .reward-title {
 }
 @keyframes rainbowBg { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
 
-/* ═══ DEBUG ═══ */
+/* botoes de teste (debug) */
 .debug-area { display: flex; gap: 6px; align-items: center; }
 .debug-label { font-size: .6rem; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: 1px; }
 .btn-debug {
@@ -333,7 +333,7 @@ body[data-tier="6"] .reward-title {
 .btn-debug.danger { color: #dc2626; border-color: rgba(220,38,38,.2); }
 .btn-debug.danger:hover { background: rgba(220,38,38,.1); }
 
-/* ═══ MODAL TIER UP ═══ */
+/* modal de subiu de tier */
 .tierup-modal { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 10001; opacity: 0; pointer-events: none; transition: opacity .35s ease; }
 .tierup-modal.show { opacity: 1; pointer-events: auto; }
 .tierup-backdrop { position: absolute; inset: 0; background: rgba(15,23,42,.35); backdrop-filter: blur(18px) saturate(150%); }
@@ -364,7 +364,7 @@ body[data-tier="6"] .reward-title {
 .tierup-particle { position: absolute; width: 6px; height: 6px; border-radius: 50%; opacity: 0; animation: tierUpParticle 1.4s ease-out forwards; }
 @keyframes tierUpParticle { 0%{opacity:1;transform:translate(0,0) scale(1)} 100%{opacity:0;transform:translate(var(--px),var(--py)) scale(0)} }
 
-/* ═══ DIAMOND TIER UP ═══ */
+/* tier up do diamante */
 .tierup-modal.tier-4 .tierup-backdrop { background: rgba(10,30,80,.4); }
 .tierup-modal.tier-4 .tierup-card { border-color: rgba(66,165,245,.4); box-shadow: 0 24px 80px rgba(13,71,161,.5), 0 0 80px rgba(66,165,245,.2), inset 0 1px 0 rgba(255,255,255,.9); }
 .tierup-modal.tier-4 .tierup-card::before { background: linear-gradient(135deg, rgba(13,71,161,.5), rgba(66,165,245,.4), rgba(255,255,255,.3)); opacity: .8; filter: blur(30px); }
@@ -378,7 +378,7 @@ body[data-tier="6"] .reward-title {
 .tierup-modal.tier-4.show .tierup-star { color: #42a5f5; animation: diamondStarBurst .8s .8s ease forwards; }
 @keyframes diamondStarBurst { 0%{opacity:0;transform:translate(-50%,-50%) scale(0) rotate(0)} 40%{opacity:1;transform:translate(-50%,-50%) scale(4) rotate(90deg)} 100%{opacity:0;transform:translate(-50%,-50%) scale(6) rotate(180deg)} }
 
-/* ═══ RUBI TIER UP ═══ */
+/* tier up do rubi */
 .tierup-modal.tier-5 .tierup-backdrop { background: rgba(60,10,30,.45); }
 .tierup-modal.tier-5 .tierup-card { border-color: rgba(232,67,147,.3); box-shadow: 0 24px 80px rgba(155,16,80,.5), 0 0 100px rgba(232,67,147,.2), inset 0 1px 0 rgba(255,255,255,.9); }
 .tierup-modal.tier-5 .tierup-card::before { background: linear-gradient(135deg, rgba(155,16,80,.5), rgba(232,67,147,.4), rgba(251,191,36,.3)); opacity: .85; filter: blur(35px); }
@@ -391,7 +391,7 @@ body[data-tier="6"] .reward-title {
 .tierup-modal.tier-5.show .tierup-badge-wrap { animation: tierUpBadgeIn 1s .2s cubic-bezier(.34,1.56,.64,1) forwards, rubiBadgePulse 1.5s 1.3s ease-in-out infinite; }
 @keyframes rubiBadgePulse { 50% { transform: scale(1.06); filter: brightness(1.1); } }
 
-/* ═══ LENDÁRIO TIER UP ═══ */
+/* tier up do lendario */
 .tierup-modal.tier-6 .tierup-backdrop { background: rgba(20,5,40,.5); animation: legendBackdropShift 4s ease-in-out infinite; }
 @keyframes legendBackdropShift { 0%,100%{background:rgba(20,5,40,.5)} 33%{background:rgba(5,20,50,.5)} 66%{background:rgba(40,10,20,.5)} }
 .tierup-modal.tier-6 .tierup-card { border: 2px solid transparent; background-clip: padding-box; box-shadow: 0 24px 80px rgba(91,33,182,.5), 0 0 120px rgba(167,139,250,.3), inset 0 1px 0 rgba(255,255,255,.9); }
@@ -426,7 +426,7 @@ body[data-tier="6"] .reward-title {
 .tierup-modal.tier-6.show .tierup-badge-wrap { animation: tierUpBadgeIn 1s .2s cubic-bezier(.34,1.56,.64,1) forwards, legendBadgeFloat 2s 1.3s ease-in-out infinite; }
 @keyframes legendBadgeFloat { 50% { transform: translateY(-6px) scale(1.04); } }
 
-/* ═══ RESPONSIVO ═══ */
+/* mobile - tela pequena */
 @media (max-width: 768px) {
     .mascote-avatar { width: 80px; height: 80px; }
     .pg-big-num { font-size: 2rem; }

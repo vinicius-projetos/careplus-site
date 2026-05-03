@@ -18,7 +18,7 @@
     <span class="orb orb-3"></span>
 </div>
 
-<!-- Alerta de trânsito -->
+<!-- aviso de transito -->
 <div class="notif" id="notifAlerta">
     <div class="notif-inner">
         <div class="notif-icon"><i class="bi bi-exclamation-triangle-fill"></i></div>
@@ -62,7 +62,7 @@
     </nav>
 
     <main class="p-4">
-        <!-- Topbar -->
+        <!-- barra de cima -->
         <div class="d-flex justify-content-between align-items-center mb-4">
             <h1 class="greeting">Agendar Consulta</h1>
             <div class="d-flex align-items-center gap-3">
@@ -87,7 +87,7 @@
             </div>
         </div>
 
-        <!-- Busca -->
+        <!-- caixa de busca -->
         <div class="glass-card p-3 mb-3">
             <div class="ag-search-wrap">
                 <i class="bi bi-search"></i>
@@ -95,14 +95,14 @@
             </div>
         </div>
 
-        <!-- Seleções ativas -->
+        <!-- filtros escolhidos -->
         <div class="d-flex flex-wrap gap-2 mb-3">
             <span class="ag-chip"><i class="bi bi-heart-pulse"></i> Odontologia <button class="ag-chip-x"><i class="bi bi-x"></i></button></span>
             <span class="ag-chip"><i class="bi bi-person"></i> Dr. José Souza <button class="ag-chip-x"><i class="bi bi-x"></i></button></span>
             <span class="ag-chip"><i class="bi bi-geo-alt"></i> Clínica Vila Olímpia <button class="ag-chip-x"><i class="bi bi-x"></i></button></span>
         </div>
 
-        <!-- Sugestão IA -->
+        <!-- dica do mascote -->
         <div class="glass-card p-3 mb-4 d-flex align-items-center gap-3 ag-sugestao">
             <div class="ag-mascote-img">
                 <img src="../assets/img/cachorrao3.png" alt="Mascote">
@@ -114,9 +114,9 @@
             </div>
         </div>
 
-        <!-- Calendário + Melhor horário -->
+        <!-- calendario e horarios -->
         <div class="row g-3 mb-3">
-            <!-- Calendário mensal -->
+            <!-- calendario do mes -->
             <div class="col-lg-7">
                 <div class="glass-card p-4">
                     <div class="d-flex justify-content-between align-items-center mb-3">
@@ -128,7 +128,7 @@
                         <span>DOM</span><span>SEG</span><span>TER</span><span>QUA</span><span>QUI</span><span>SEX</span><span>SAB</span>
                     </div>
                     <div class="ag-cal-grid" id="calGrid">
-                        <!-- Gerado via JS -->
+                        <!-- montado pelo js -->
                     </div>
                     <div class="ag-cal-legenda">
                         <span><i class="ag-legenda-dot" style="background:#22c55e;"></i> Disponível</span>
@@ -136,7 +136,7 @@
                         <span><i class="ag-legenda-dot" style="background:#cbd5e1;"></i> Indisponível</span>
                     </div>
 
-                    <!-- Pergunta do mascote -->
+                    <!-- pergunta do mascote -->
                     <div class="ag-pergunta mt-4">
                         <div class="d-flex align-items-start gap-3">
                             <div class="ag-mascote-mini">
@@ -154,7 +154,7 @@
                 </div>
             </div>
 
-            <!-- Horários disponíveis -->
+            <!-- lista de horarios livres -->
             <div class="col-lg-5">
                 <div class="glass-card p-4 h-100 d-flex flex-column">
                     <h6 class="fw-bold mb-1">Melhor horário disponível</h6>
@@ -173,14 +173,14 @@
             </div>
         </div>
 
-        <!-- Botão confirmar -->
+        <!-- botao de confirmar -->
         <button class="ag-btn ag-btn-primary w-100 ag-btn-confirmar" id="btnConfirmar">
             <i class="bi bi-calendar-check me-2"></i> Confirmar Agendamento
         </button>
     </main>
 </div>
 
-<!-- Modal Confirmação -->
+<!-- modal de confirmacao -->
 <div class="modal-glass" id="modalConfirm" aria-hidden="true">
     <div class="modal-glass-backdrop"></div>
     <div class="modal-glass-card" role="dialog" aria-live="polite">

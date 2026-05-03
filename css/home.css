@@ -1,4 +1,4 @@
-/* ═══ HOME - LIQUID GLASS ═══ */
+/* estilos da pagina inicial */
 
 @media (max-width: 900px) {
     .notif-inner { flex-wrap: wrap !important; padding: 14px 40px 14px 16px !important; }
@@ -7,7 +7,7 @@
 
 @keyframes spin360 { to { transform: rotate(360deg); } }
 
-/* Card consulta glass */
+/* card de vidro da consulta */
 .card-consulta, .acao, .card-pontos {
     background: rgba(255,255,255,.55) !important;
     backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%);
@@ -36,7 +36,7 @@
 }
 .acao:hover i { transform: rotate(-8deg) scale(1.05); }
 
-/* Botões glass */
+/* botoes de vidro */
 .btn-azul, .btn-azul:hover {
     background: linear-gradient(135deg, var(--cor), var(--cor2)) !important;
     border: 1px solid transparent !important; color: #fff !important;
@@ -54,7 +54,7 @@
 }
 .btn-outline:hover { background: rgba(255,255,255,.85) !important; transform: translateY(-1px); }
 
-/* Mascote da consulta */
+/* mascote do card de consulta */
 .mascote-img {
     padding: 4px;
     background: linear-gradient(135deg, var(--cor), var(--cor2)) !important;
@@ -69,7 +69,7 @@
 }
 .mascote-img img { border-radius: 50%; background: #fff; }
 
-/* Barra de progresso */
+/* barra de pontos */
 .barra {
     background: rgba(15,23,42,.06) !important;
     box-shadow: inset 0 2px 4px rgba(15,23,42,.08);
@@ -88,14 +88,14 @@
 }
 @keyframes homeShimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
 
-/* Pontos mascote */
+/* mascote dos pontos */
 .pontos-mascote {
     padding: 3px;
     box-shadow: 0 6px 18px rgba(0,59,113,.3), inset 0 1px 0 rgba(255,255,255,.4) !important;
 }
 .pontos-mascote img { border: 2px solid #fff; }
 
-/* ═══ TIERS ═══ */
+/* tiers */
 .tiers {
     padding: 14px;
     background: rgba(255,255,255,.4); backdrop-filter: blur(10px);
@@ -129,7 +129,7 @@
     color: transparent !important; font-weight: 700 !important;
 }
 
-/* ═══ LENDÁRIO - ARCO-ÍRIS ═══ */
+/* tier lendario - arco-iris */
 .tier[data-tier="6"] { position: relative; }
 .tier[data-tier="6"] .tier-img::before {
     content: ''; position: absolute; inset: -4px; border-radius: 50%;
@@ -150,7 +150,7 @@
 }
 @keyframes rainbowShift { to { background-position: 300% center; } }
 
-/* ═══ LENDÁRIO BODY ═══ */
+/* fundo da pagina quando ta no tier lendario */
 body[data-tier="6"] .greeting {
     background: var(--rainbow) !important; background-size: 300% auto !important;
     -webkit-background-clip: text !important; background-clip: text !important;
@@ -181,7 +181,7 @@ body[data-tier="6"] .acao i {
     animation: rainbowShift 4s linear infinite !important;
 }
 
-/* Balão glass */
+/* balaozinho do mascote */
 .balao {
     background: rgba(255,255,255,.75) !important;
     backdrop-filter: blur(16px) saturate(180%);
@@ -192,7 +192,7 @@ body[data-tier="6"] .acao i {
 }
 .balao::after { border-left-color: rgba(255,255,255,.75) !important; }
 
-/* ═══ MODAL CONFIRMAÇÃO ═══ */
+/* modal de confirmacao */
 .confirm-modal .modal-glass-card::before {
     content: ''; position: absolute; inset: -2px; border-radius: 28px;
     background: linear-gradient(135deg, rgba(34,197,94,.4), rgba(22,163,74,.2), transparent 60%);

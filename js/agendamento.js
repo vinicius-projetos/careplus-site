@@ -1,167 +1,218 @@
-document.addEventListener('DOMContentLoaded', function() {
-    var calGrid = document.getElementById('calGrid');
-    var mesAnoLabel = document.getElementById('mesAnoLabel');
-    var btnMesAnt = document.getElementById('btnMesAnt');
-    var btnMesProx = document.getElementById('btnMesProx');
-    var horariosLista = document.getElementById('horariosLista');
-    var horarioHora = document.getElementById('horarioHora');
-    var horarioClinica = document.getElementById('horarioClinica');
-    var horarioDiaTxt = document.getElementById('horarioDiaTxt');
-    var semHorarios = document.getElementById('semHorarios');
+// pagina de agendamento - calendario e horarios
+
+window.addEventListener('load', function() {
+
+    // pega tudo da tela
+    var grade = document.getElementById('calGrid');
+    var tituloMes = document.getElementById('mesAnoLabel');
+    var btnVoltar = document.getElementById('btnMesAnt');
+    var btnAvancar = document.getElementById('btnMesProx');
+    var listaHorarios = document.getElementById('horariosLista');
+    var horaTexto = document.getElementById('horarioHora');
+    var clinicaTexto = document.getElementById('horarioClinica');
+    var diaTexto = document.getElementById('horarioDiaTxt');
+    var avisoVazio = document.getElementById('semHorarios');
     var modalSub = document.getElementById('modalSub');
 
+    // listas pra usar nos textos
     var meses = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho','Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
     var diasSemana = ['Domingo','Segunda','Terça','Quarta','Quinta','Sexta','Sábado'];
+
+    // data de hoje pra nao deixar agendar pra tras
     var hoje = new Date();
     var mesAtual = hoje.getMonth();
     var anoAtual = hoje.getFullYear();
-    var diaSelecionado = null;
+
+    // o que o usuario escolheu
+    var diaEscolhido = null;
     var horarioEscolhido = null;
 
     var clinicas = ['Clínica Brooklin', 'Clínica Vila Olímpia', 'Clínica Campo Belo', 'Clínica Moema', 'Clínica Itaim'];
     var horariosBase = ['08:00','08:30','09:00','09:30','10:00','10:30','11:00','14:00','14:30','15:00','15:30','16:00','16:30','17:00'];
 
-    function gerarDisponibilidade(dia, mes, ano) {
-        var seed = dia * 31 + mes * 373 + ano;
+    // gera horarios "aleatorios" pra cada dia (mesmo dia sempre da mesmo resultado)
+    function gerarHorarios(dia, mes, ano) {
+        var semente = dia * 31 + mes * 373 + ano;
         var diaSem = new Date(ano, mes, dia).getDay();
+
+        // domingo nao tem
         if (diaSem === 0) return null;
 
-        var disponiveis = [];
+        var lista = [];
         for (var i = 0; i < horariosBase.length; i++) {
-            var hash = (seed * (i + 1) * 7) % 100;
-            if (hash > 35) {
-                disponiveis.push({
+            var num = (semente * (i + 1) * 7) % 100;
+            // pega so alguns horarios
+            if (num > 35) {
+                lista.push({
                     hora: horariosBase[i],
-                    clinica: clinicas[(seed + i) % clinicas.length]
+                    clinica: clinicas[(semente + i) % clinicas.length]
                 });
             }
         }
-        return disponiveis.length > 0 ? disponiveis : null;
+
+        if (lista.length > 0) return lista;
+        return null;
     }
 
-    function temDisponibilidade(dia, mes, ano) {
+    // o dia tem horario livre?
+    function temHorario(dia, mes, ano) {
         var diaSem = new Date(ano, mes, dia).getDay();
         if (diaSem === 0) return false;
-        if (mes === hoje.getMonth() && ano === hoje.getFullYear() && dia < hoje.getDate()) return false;
-        var disp = gerarDisponibilidade(dia, mes, ano);
-        return disp !== null;
+
+        // dia que ja passou nao conta
+        if (mes === hoje.getMonth() && ano === hoje.getFullYear() && dia < hoje.getDate()) {
+            return false;
+        }
+
+        return gerarHorarios(dia, mes, ano) !== null;
     }
 
+    // mostra os horarios do dia escolhido na lateral
     function mostrarHorarios(dia, mes, ano) {
-        var horarios = gerarDisponibilidade(dia, mes, ano);
-        var diaSem = diasSemana[new Date(ano, mes, dia).getDay()];
-        horarioDiaTxt.textContent = diaSem + ', ' + dia + ' de ' + meses[mes];
+        var horarios = gerarHorarios(dia, mes, ano);
+        var nomeDiaSem = diasSemana[new Date(ano, mes, dia).getDay()];
+        diaTexto.textContent = nomeDiaSem + ', ' + dia + ' de ' + meses[mes];
 
+        // dia sem horario
         if (!horarios || horarios.length === 0) {
-            horariosLista.innerHTML = '';
-            horariosLista.style.display = 'none';
-            semHorarios.style.display = 'block';
-            horarioHora.textContent = '--:--';
-            horarioClinica.textContent = '';
+            listaHorarios.innerHTML = '';
+            listaHorarios.style.display = 'none';
+            avisoVazio.style.display = 'block';
+            horaTexto.textContent = '--:--';
+            clinicaTexto.textContent = '';
             return;
         }
 
-        semHorarios.style.display = 'none';
-        horariosLista.style.display = 'flex';
-        horariosLista.innerHTML = '';
+        avisoVazio.style.display = 'none';
+        listaHorarios.style.display = 'flex';
+        listaHorarios.innerHTML = '';
 
-        horarioHora.textContent = horarios[0].hora;
-        horarioClinica.textContent = '- ' + horarios[0].clinica;
+        // ja deixa o primeiro selecionado
+        horaTexto.textContent = horarios[0].hora;
+        clinicaTexto.textContent = '- ' + horarios[0].clinica;
         horarioEscolhido = horarios[0];
 
+        // monta cada botao de horario
         for (var i = 0; i < horarios.length; i++) {
-            var btn = document.createElement('button');
-            btn.className = 'ag-horario-slot';
-            if (i === 0) btn.classList.add('ativo');
-            btn.innerHTML = '<span class="ag-slot-hora">' + horarios[i].hora + '</span><span class="ag-slot-clinica">' + horarios[i].clinica + '</span>';
-            btn.dataset.hora = horarios[i].hora;
-            btn.dataset.clinica = horarios[i].clinica;
+            var botao = document.createElement('button');
+            botao.className = 'ag-horario-slot';
+            if (i === 0) botao.classList.add('ativo');
+            botao.innerHTML = '<span class="ag-slot-hora">' + horarios[i].hora + '</span><span class="ag-slot-clinica">' + horarios[i].clinica + '</span>';
+            botao.dataset.hora = horarios[i].hora;
+            botao.dataset.clinica = horarios[i].clinica;
 
-            btn.onclick = function() {
-                var todos = horariosLista.querySelectorAll('.ag-horario-slot');
-                for (var j = 0; j < todos.length; j++) todos[j].classList.remove('ativo');
+            // ao clicar troca o ativo e atualiza o titulo
+            botao.onclick = function() {
+                var todos = listaHorarios.querySelectorAll('.ag-horario-slot');
+                for (var j = 0; j < todos.length; j++) {
+                    todos[j].classList.remove('ativo');
+                }
                 this.classList.add('ativo');
-                horarioHora.textContent = this.dataset.hora;
-                horarioClinica.textContent = '- ' + this.dataset.clinica;
-                horarioEscolhido = { hora: this.dataset.hora, clinica: this.dataset.clinica };
+                horaTexto.textContent = this.dataset.hora;
+                clinicaTexto.textContent = '- ' + this.dataset.clinica;
+                horarioEscolhido = {
+                    hora: this.dataset.hora,
+                    clinica: this.dataset.clinica
+                };
             };
 
-            horariosLista.appendChild(btn);
+            listaHorarios.appendChild(botao);
         }
     }
 
-    function renderCalendario(mes, ano) {
-        calGrid.innerHTML = '';
-        mesAnoLabel.textContent = meses[mes] + ' ' + ano;
+    // monta o calendario do mes
+    function montarCalendario(mes, ano) {
+        grade.innerHTML = '';
+        tituloMes.textContent = meses[mes] + ' ' + ano;
 
         var primeiroDia = new Date(ano, mes, 1).getDay();
         var totalDias = new Date(ano, mes + 1, 0).getDate();
 
+        // espacos vazios antes do dia 1
         for (var v = 0; v < primeiroDia; v++) {
             var vazio = document.createElement('div');
             vazio.className = 'ag-cal-dia vazio';
-            calGrid.appendChild(vazio);
+            grade.appendChild(vazio);
         }
 
+        // os dias do mes
         for (var d = 1; d <= totalDias; d++) {
-            var el = document.createElement('div');
-            el.className = 'ag-cal-dia';
-            el.textContent = d;
-            el.dataset.dia = d;
+            var dia = document.createElement('div');
+            dia.className = 'ag-cal-dia';
+            dia.textContent = d;
+            dia.dataset.dia = d;
 
-            var passado = mes === hoje.getMonth() && ano === hoje.getFullYear() && d < hoje.getDate();
+            var jaPassou = mes === hoje.getMonth() && ano === hoje.getFullYear() && d < hoje.getDate();
             var ehHoje = d === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear();
-            var disponivel = temDisponibilidade(d, mes, ano);
+            var temVaga = temHorario(d, mes, ano);
 
-            if (ehHoje) el.classList.add('hoje');
+            if (ehHoje) dia.classList.add('hoje');
 
-            if (passado) {
-                el.classList.add('desabilitado');
-            } else if (!disponivel) {
-                el.classList.add('indisponivel');
+            if (jaPassou) {
+                dia.classList.add('desabilitado');
+            } else if (!temVaga) {
+                dia.classList.add('indisponivel');
             } else {
-                el.classList.add('disponivel');
+                dia.classList.add('disponivel');
             }
 
-            if (diaSelecionado && diaSelecionado.d === d && diaSelecionado.m === mes && diaSelecionado.a === ano) {
-                el.classList.add('selecionado');
+            // se ja tinha um dia selecionado antes, marca de novo
+            if (diaEscolhido && diaEscolhido.d === d && diaEscolhido.m === mes && diaEscolhido.a === ano) {
+                dia.classList.add('selecionado');
             }
 
-            el.onclick = function() {
-                if (this.classList.contains('desabilitado') || this.classList.contains('vazio') || this.classList.contains('indisponivel')) return;
-                var todos = calGrid.querySelectorAll('.ag-cal-dia');
-                for (var i = 0; i < todos.length; i++) todos[i].classList.remove('selecionado');
+            // clicar no dia
+            dia.onclick = function() {
+                // dias bloqueados nao fazem nada
+                if (this.classList.contains('desabilitado')) return;
+                if (this.classList.contains('vazio')) return;
+                if (this.classList.contains('indisponivel')) return;
+
+                var todos = grade.querySelectorAll('.ag-cal-dia');
+                for (var i = 0; i < todos.length; i++) {
+                    todos[i].classList.remove('selecionado');
+                }
                 this.classList.add('selecionado');
-                var diaNum = parseInt(this.dataset.dia);
-                diaSelecionado = { d: diaNum, m: mesAtual, a: anoAtual };
-                mostrarHorarios(diaNum, mesAtual, anoAtual);
+
+                var n = parseInt(this.dataset.dia);
+                diaEscolhido = { d: n, m: mesAtual, a: anoAtual };
+                mostrarHorarios(n, mesAtual, anoAtual);
             };
 
-            calGrid.appendChild(el);
+            grade.appendChild(dia);
         }
     }
 
-    btnMesAnt.onclick = function() {
-        mesAtual--;
-        if (mesAtual < 0) { mesAtual = 11; anoAtual--; }
-        renderCalendario(mesAtual, anoAtual);
+    // botoes de mudar o mes
+    btnVoltar.onclick = function() {
+        mesAtual = mesAtual - 1;
+        if (mesAtual < 0) {
+            mesAtual = 11;
+            anoAtual = anoAtual - 1;
+        }
+        montarCalendario(mesAtual, anoAtual);
     };
 
-    btnMesProx.onclick = function() {
-        mesAtual++;
-        if (mesAtual > 11) { mesAtual = 0; anoAtual++; }
-        renderCalendario(mesAtual, anoAtual);
+    btnAvancar.onclick = function() {
+        mesAtual = mesAtual + 1;
+        if (mesAtual > 11) {
+            mesAtual = 0;
+            anoAtual = anoAtual + 1;
+        }
+        montarCalendario(mesAtual, anoAtual);
     };
 
-    renderCalendario(mesAtual, anoAtual);
+    // abre a tela ja montada
+    montarCalendario(mesAtual, anoAtual);
 
+    // botao confirmar agendamento - abre modal e fecha sozinho
     var btnConfirmar = document.getElementById('btnConfirmar');
     var modal = document.getElementById('modalConfirm');
     if (btnConfirmar && modal) {
         btnConfirmar.onclick = function() {
-            if (diaSelecionado && horarioEscolhido) {
-                var diaSem = diasSemana[new Date(diaSelecionado.a, diaSelecionado.m, diaSelecionado.d).getDay()];
-                modalSub.textContent = diaSem + ', ' + diaSelecionado.d + ' de ' + meses[diaSelecionado.m] + ' — ' + horarioEscolhido.hora + ' — ' + horarioEscolhido.clinica;
+            if (diaEscolhido && horarioEscolhido) {
+                var nomeDiaSem = diasSemana[new Date(diaEscolhido.a, diaEscolhido.m, diaEscolhido.d).getDay()];
+                modalSub.textContent = nomeDiaSem + ', ' + diaEscolhido.d + ' de ' + meses[diaEscolhido.m] + ' — ' + horarioEscolhido.hora + ' — ' + horarioEscolhido.clinica;
             }
             modal.classList.add('show');
             modal.setAttribute('aria-hidden', 'false');
@@ -172,17 +223,24 @@ document.addEventListener('DOMContentLoaded', function() {
         };
     }
 
-    var notifClose = document.getElementById('notifClose');
-    var notif = document.getElementById('notifAlerta');
-    if (notifClose && notif) {
-        notifClose.onclick = function() { notif.style.display = 'none'; };
+    // fechar a notificacao do topo
+    var fecharAviso = document.getElementById('notifClose');
+    var aviso = document.getElementById('notifAlerta');
+    if (fecharAviso && aviso) {
+        fecharAviso.onclick = function() {
+            aviso.style.display = 'none';
+        };
     }
 
+    // fechar as "etiquetas" (chips)
     var chips = document.querySelectorAll('.ag-chip-x');
     for (var c = 0; c < chips.length; c++) {
-        chips[c].onclick = function() { this.parentElement.style.display = 'none'; };
+        chips[c].onclick = function() {
+            this.parentElement.style.display = 'none';
+        };
     }
 
+    // botao de ajuda
     document.getElementById('helpFab').onclick = function() {
         alert('Central de Ajuda - Em breve!');
     };
