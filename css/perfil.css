@@ -1,11 +1,11 @@
-/* ═══ PERFIL ═══ */
+/* estilos da pagina de perfil */
 
 .glass-card.editando { border-color: rgba(0,59,113,.2); }
 
-/* Avatar grande */
+/* avatarzao do topo */
 .pf-avatar-grande { width: 80px; height: 80px; flex-shrink: 0; }
 
-/* Barra de pontos no topbar */
+/* barra de pontos da barra de cima */
 .pf-pontos-bar {
     background: rgba(255,255,255,.55);
     backdrop-filter: blur(16px);
@@ -23,7 +23,7 @@
     background: linear-gradient(90deg, var(--cor), var(--cor2));
 }
 
-/* Stats */
+/* cards das estatisticas */
 .pf-stat-card {
     background: rgba(255,255,255,.45);
     border: 1px solid rgba(255,255,255,.6);
@@ -31,7 +31,7 @@
 }
 .pf-stat-card:hover { transform: translateY(-2px); }
 
-/* Input de edição */
+/* campos de digitar quando ta editando */
 .pf-input {
     width: 100%;
     background: rgba(255,255,255,.7);
@@ -46,14 +46,14 @@
 .pf-input:focus { border-color: var(--cor); box-shadow: 0 0 0 3px rgba(0,59,113,.1); }
 .pf-textarea { resize: vertical; min-height: 55px; }
 
-/* Botão salvar */
+/* botao de salvar (verde) */
 .pf-btn-editar.salvando {
     background: #16a34a !important;
     color: #fff !important;
     border-color: #16a34a !important;
 }
 
-/* Toast */
+/* mensagenzinha que aparece embaixo */
 .pf-toast {
     position: fixed; bottom: 90px; right: 24px;
     background: rgba(255,255,255,.85);
@@ -70,7 +70,7 @@
 }
 .pf-toast.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
 
-/* Responsivo */
+/* mobile - tela pequena */
 @media (max-width: 768px) {
     .sidebar { display: none; }
     .pf-pontos-bar { display: none !important; }
