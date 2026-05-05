@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Lista de Espera - CarePlus</title>
+  <style>
+    body {
+      font-family: Arial;
+      background-color: #f4f6f9;
+      padding: 20px;
+    }
+
+    h2 {
+      color: #2c3e50;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 30px;
+    }
+
+    table, th, td {
+      border: 1px solid #ccc;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: center;
+    }
+
+    th {
+      background-color: #3498db;
+      color: white;
+    }
+
+    .form-container {
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      width: 400px;
+    }
+
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      background-color: #2ecc71;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #27ae60;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h2>Minha Lista de Espera</h2>
+
+  <table>
+    <tr>
+      <th>Posição</th>
+      <th>Serviço</th>
+      <th>Clínica</th>
+      <th>Data</th>
+      <th>Status</th>
+    </tr>
+
+    <tr>
+      <td>1</td>
+      <td>Consulta</td>
+      <td>Clínica Centro</td>
+      <td>10/05</td>
+      <td>Aguardando</td>
+    </tr>
+
+    <tr>
+      <td>2</td>
+      <td>Exame</td>
+      <td>Clínica Zona Sul</td>
+      <td>12/05</td>
+      <td>Confirmado</td>
+    </tr>
+  </table>
+
+  <div class="form-container">
+    <h3>Entrar na lista de espera</h3>
+
+    <input type="text" placeholder="Tipo de serviço">
+    <input type="text" placeholder="Clínica">
+    <input type="date">
+    <input type="time">
+
+    <button>Entrar na lista</button>
+  </div>
+
+</body>
+</html>
