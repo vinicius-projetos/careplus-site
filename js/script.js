@@ -54,9 +54,11 @@ window.addEventListener('load', function() {
     }
 
     // botao de ajuda flutuante
-    document.getElementById('helpFab').onclick = function() {
-        alert('Central de Ajuda - Em breve!');
-    };
+   const helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
+
+    document.getElementById('helpFab').onclick = function () {
+    helpModal.show();
+};
 
     // tiers (bronze, prata, etc) - clica e troca o tema da pagina
     var tiers = document.querySelectorAll('.tier');

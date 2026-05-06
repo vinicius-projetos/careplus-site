@@ -239,9 +239,9 @@ window.addEventListener('load', function() {
             this.parentElement.style.display = 'none';
         };
     }
+   const helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
 
-    // botao de ajuda
-    document.getElementById('helpFab').onclick = function() {
-        alert('Central de Ajuda - Em breve!');
-    };
+    document.getElementById('helpFab').onclick = function () {
+    helpModal.show();
+};
 });
