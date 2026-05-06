@@ -467,3 +467,81 @@ main { flex: 1; padding: 24px 32px 30px; }
     .mascote { display: none; }
     .acoes { grid-template-columns: 1fr 1fr; }
 }
+
+
+/* posicionamento tipo chat */
+.help-modal .modal-dialog {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    margin: 0;
+    max-width: 360px;
+    width: calc(100% - 20px);
+}
+
+/* visual glass */
+.help-inner {
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255,255,255,.9);
+
+    box-shadow: 0 12px 40px rgba(15,23,42,.12),
+                inset 0 1px 0 rgba(255,255,255,.8);
+
+    backdrop-filter: blur(20px) saturate(180%);
+    
+}
+
+/* HEADER */
+.help-header {
+    border-bottom: 1px solid rgba(255,255,255,.4);
+}
+
+.help-header h6 {
+    font-size: .85rem;
+    color: #2b7de9;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* BODY */
+.help-body {
+    height: 260px;
+    overflow-y: auto;
+    font-size: .8rem;
+}
+
+.help-message {
+    padding: 8px 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    max-width: 80%;
+}
+
+.help-message.bot {
+    background: rgba(255,255,255,.8);
+}
+
+/* FOOTER */
+.help-footer {
+    display: flex;
+    gap: 8px;
+}
+
+.help-footer input {
+    font-size: .75rem;
+}
+
+.help-footer .btn {
+    font-size: .75rem;
+}
+
+/* RESPONSIVO */
+@media (max-width: 480px) {
+    .help-modal .modal-dialog {
+        right: 10px;
+        bottom: 70px;
+        width: calc(100% - 20px);
+    }
+}
