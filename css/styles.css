@@ -8,6 +8,11 @@
     --rainbow-conic: conic-gradient(from 0deg, #ff3b3b, #ff9500, #ffd60a, #34c759, #00c7be, #0a84ff, #5e5ce6, #bf5af2, #ff375f, #ff3b3b);
 }
 @keyframes spin360 { to { transform: rotate(360deg); } }
+@keyframes pulse { 0%,100% { opacity: .3; transform: scale(1); } 50% { opacity: .7; transform: scale(1.1); } }
+@keyframes float { 50% { transform: translateY(-6px); } }
+@keyframes shimmer { 0% { transform: translateX(-100%); } 100% { transform: translateX(100%); } }
+@keyframes rainbow { to { background-position: 300% center; } }
+@keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body {
     font-family: 'Poppins', sans-serif; background: #eef2f8; color: #2d3748;
