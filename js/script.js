@@ -1,11 +1,11 @@
 // pagina inicial (home)
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
 
     // menu da esquerda - marca o item clicado como ativo
     var itens = document.querySelectorAll('.sb-menu li:not(.sep)');
     for (var i = 0; i < itens.length; i++) {
-        itens[i].onclick = function() {
+        itens[i].onclick = function () {
             var todos = document.querySelectorAll('.sb-menu li');
             for (var j = 0; j < todos.length; j++) {
                 todos[j].classList.remove('active');
@@ -23,7 +23,7 @@ window.addEventListener('load', function() {
         modal.classList.add('show');
         modal.setAttribute('aria-hidden', 'false');
         // fecha sozinho depois de 2.5 segundos
-        setTimeout(function() {
+        setTimeout(function () {
             modal.classList.remove('show');
             modal.setAttribute('aria-hidden', 'true');
         }, 2500);
@@ -45,7 +45,7 @@ window.addEventListener('load', function() {
     var aviso = document.getElementById('notif');
     var botoesAviso = document.querySelectorAll('.notif-btn');
     for (var k = 0; k < botoesAviso.length; k++) {
-        botoesAviso[k].onclick = function() {
+        botoesAviso[k].onclick = function () {
             if (this.classList.contains('primary')) {
                 confirmar();
             }
@@ -54,16 +54,14 @@ window.addEventListener('load', function() {
     }
 
     // botao de ajuda flutuante
-   const helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
-
     document.getElementById('helpFab').onclick = function () {
-    helpModal.show();
-};
+        alert('Central de Ajuda - Em breve!');
+    };
 
     // tiers (bronze, prata, etc) - clica e troca o tema da pagina
     var tiers = document.querySelectorAll('.tier');
     for (var t = 0; t < tiers.length; t++) {
-        tiers[t].onclick = function() {
+        tiers[t].onclick = function () {
             var cor = this.dataset.cor;
             var cor2 = this.dataset.cor2;
             var fundo = this.dataset.bg;
@@ -95,6 +93,23 @@ window.addEventListener('load', function() {
                 barra.style.background = '';
                 barra.style.backgroundSize = '';
                 barra.style.animation = '';
+
+                // Selecionando os botões pelos IDs
+                const btnCalendario = document.getElementById('btnCalendario');
+                const btnClinicas = document.getElementById('btnClinicas');
+
+                // Ação para o calendário
+                btnCalendario.addEventListener('click', () => {
+                    console.log("Botão calendário clicado!");
+                    // Aqui vai sua lógica para adicionar ao calendário
+                });
+
+                // Ação para as clínicas
+                btnClinicas.addEventListener('click', () => {
+                    console.log("Abrindo mapa de clínicas...");
+                    // Aqui você chama sua função de mapa, ex: abrirMapa();
+                });
+
             }
         };
     }
