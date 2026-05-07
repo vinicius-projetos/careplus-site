@@ -1,0 +1,100 @@
+/* estilos da pagina lista de espera */
+
+.le-card {
+    background: rgba(255,255,255,.55);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(15,23,42,.08), inset 0 1px 0 rgba(255,255,255,.7);
+    padding: 24px;
+    margin-bottom: 22px;
+}
+
+.le-card h2, .le-card h3 {
+    color: var(--cor);
+    font-weight: 600;
+    margin-bottom: 18px;
+}
+.le-card h2 { font-size: 1.2rem; }
+.le-card h3 { font-size: 1.05rem; }
+
+.le-tabela-wrap { overflow-x: auto; }
+.le-tabela {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    border-radius: 12px;
+    overflow: hidden;
+    background: rgba(255,255,255,.7);
+}
+.le-tabela th, .le-tabela td {
+    padding: 12px 14px;
+    text-align: left;
+    font-size: .85rem;
+    border-bottom: 1px solid rgba(15,23,42,.06);
+}
+.le-tabela th {
+    background: linear-gradient(135deg, var(--cor), var(--cor2));
+    color: #fff;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: .72rem;
+    letter-spacing: .5px;
+}
+.le-tabela tr:last-child td { border-bottom: none; }
+.le-tabela tbody tr:hover { background: rgba(0,96,169,.04); }
+
+.le-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: .72rem;
+    font-weight: 600;
+}
+.le-status.aguardando { background: #fff4d6; color: #7a5500; }
+.le-status.confirmado { background: #d4f5e0; color: #1f7a3e; }
+
+.le-form { max-width: 480px; }
+.le-form label {
+    display: block;
+    font-size: .78rem;
+    font-weight: 500;
+    color: #5a6b85;
+    margin: 12px 0 6px;
+}
+.le-form input, .le-form select {
+    width: 100%;
+    padding: 11px 14px;
+    border: 1px solid rgba(15,23,42,.08);
+    border-radius: 12px;
+    background: rgba(255,255,255,.7);
+    font-family: inherit;
+    font-size: .88rem;
+    color: #2d3748;
+    outline: none;
+    transition: border-color .2s, box-shadow .2s;
+}
+.le-form input:focus, .le-form select:focus {
+    border-color: var(--cor2);
+    box-shadow: 0 0 0 3px rgba(0,96,169,.15);
+}
+
+.le-form .btn-azul {
+    margin-top: 18px;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--cor), var(--cor2));
+    color: #fff;
+    font-weight: 600;
+    font-size: .9rem;
+    cursor: pointer;
+    transition: transform .2s, box-shadow .2s;
+    font-family: inherit;
+}
+.le-form .btn-azul:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 24px rgba(0,96,169,.3);
+}

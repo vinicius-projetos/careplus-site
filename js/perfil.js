@@ -106,7 +106,9 @@ window.addEventListener('load', function() {
     }
 
     // botao de ajuda
-    document.getElementById('helpFab').onclick = function() {
-        alert('Central de Ajuda - Em breve!');
-    };
+    const helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
+
+    document.getElementById('helpFab').onclick = function () {
+    helpModal.show();
+};
 });
