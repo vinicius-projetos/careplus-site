@@ -1,53 +1,69 @@
-/* cores de cada tier */
-:root { --cor: #0d47a1; --cor2: #42a5f5; }
-body[data-tier="1"] { --cor: #b05a1a; --cor2: #e08a40; }
-body[data-tier="2"] { --cor: #556270; --cor2: #8395a7; }
-body[data-tier="3"] { --cor: #9a7d0a; --cor2: #d4af37; }
-body[data-tier="4"] { --cor: #0d47a1; --cor2: #42a5f5; }
-body[data-tier="5"] { --cor: #9b1050; --cor2: #e84393; }
-body[data-tier="6"] { --cor: #5b21b6; --cor2: #a78bfa; }
+/* obs: cores por tier (body[data-tier]) e animacoes globais (spin360, pulse, float,
+   shimmer, rainbow, fadeUp) ficam em styles.css */
 
 body { transition: background .6s; }
 .text-tier { color: var(--cor) !important; }
 
-/* animacoes globais agora estao em styles.css (spin360, pulse, float, shimmer, rainbow, fadeUp) */
-
-/* coisas com efeito de vidro */
+/* etiquetas com efeito de vidro */
 .glass-badge {
-    display: inline-flex; align-items: center; padding: 6px 12px; font-size: .78rem; font-weight: 600; color: var(--cor);
-    background: linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,.3)); backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,.7); border-radius: 999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    display: inline-flex; align-items: center; padding: 6px 12px;
+    font-size: .78rem; font-weight: 600; color: var(--cor);
+    background: linear-gradient(135deg, rgba(255,255,255,.6), rgba(255,255,255,.3));
+    backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,.7);
+    border-radius: 999px; box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
 }
 .glass-badge.sm { padding: 4px 10px; font-size: .72rem; }
 .glass-badge.muted { color: #64748b; }
+
+/* botoes com efeito de vidro */
 .btn-glass {
-    padding: 9px 14px; font-size: .85rem; font-weight: 600; background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.6);
-    border-radius: 12px; color: #334155; cursor: pointer; box-shadow: inset 0 1px 0 rgba(255,255,255,.8); transition: filter .25s, box-shadow .25s, transform .25s;
+    padding: 9px 14px; font-size: .85rem; font-weight: 600;
+    background: rgba(255,255,255,.5); border: 1px solid rgba(255,255,255,.6);
+    border-radius: 12px; color: #334155; cursor: pointer;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
+    transition: filter .25s, box-shadow .25s, transform .25s;
 }
 .btn-glass:disabled { opacity: .55; cursor: not-allowed; }
-.btn-glass.primary, .btn-glass.primary:hover, .btn-glass.primary:focus, .btn-glass.primary:active {
-    color: #fff; background: linear-gradient(135deg, var(--cor), var(--cor2)); border: 1px solid transparent;
+.btn-glass.primary, .btn-glass.primary:hover,
+.btn-glass.primary:focus, .btn-glass.primary:active {
+    color: #fff; background: linear-gradient(135deg, var(--cor), var(--cor2));
+    border: 1px solid transparent;
 }
 .btn-glass.primary { box-shadow: 0 4px 14px rgba(13,71,161,.3), inset 0 1px 0 rgba(255,255,255,.25); }
-.btn-glass.primary:hover:not(:disabled) { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 8px 22px rgba(13,71,161,.45), inset 0 1px 0 rgba(255,255,255,.3); }
+.btn-glass.primary:hover:not(:disabled) {
+    filter: brightness(1.1); transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(13,71,161,.45), inset 0 1px 0 rgba(255,255,255,.3);
+}
 .btn-glass.success, .btn-glass.success:hover {
     background: #16a34a !important; color: #fff !important;
-    border: 1px solid transparent !important; box-shadow: 0 4px 14px rgba(22,163,74,.4) !important; cursor: default; opacity: 1 !important;
+    border: 1px solid transparent !important;
+    box-shadow: 0 4px 14px rgba(22,163,74,.4) !important;
+    cursor: default; opacity: 1 !important;
 }
 
 /* banner do topo */
 .hero-row { position: relative; }
-.hero-row > .avatar-wrap { position: absolute; top: 50%; right: 20px; transform: translateY(-50%); z-index: 5; }
-.hero-banner {
-    background: linear-gradient(135deg, var(--cor), var(--cor2)); border-radius: 24px;
-    border: 1px solid rgba(255,255,255,.25); box-shadow: 0 12px 40px rgba(13,71,161,.3), inset 0 1px 0 rgba(255,255,255,.4);
-    position: relative; overflow: hidden; transition: background .6s;
+.hero-row > .avatar-wrap {
+    position: absolute; top: 50%; right: 20px;
+    transform: translateY(-50%); z-index: 5;
 }
-.hero-banner::before { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.3), transparent 50%); }
+.hero-banner {
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, var(--cor), var(--cor2));
+    border: 1px solid rgba(255,255,255,.25); border-radius: 24px;
+    box-shadow: 0 12px 40px rgba(13,71,161,.3), inset 0 1px 0 rgba(255,255,255,.4);
+    transition: background .6s;
+}
+.hero-banner::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 30% 20%, rgba(255,255,255,.3), transparent 50%);
+}
 .hero-banner > * { position: relative; z-index: 1; }
 .hero-mascote {
-    width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.25); backdrop-filter: blur(10px);
-    border: 2px solid rgba(255,255,255,.5); display: flex; align-items: center; justify-content: center; overflow: hidden;
+    width: 56px; height: 56px; border-radius: 50%;
+    background: rgba(255,255,255,.25); backdrop-filter: blur(10px);
+    border: 2px solid rgba(255,255,255,.5);
+    display: flex; align-items: center; justify-content: center; overflow: hidden;
 }
 .hero-mascote img { width: 100%; height: 100%; object-fit: cover; }
 

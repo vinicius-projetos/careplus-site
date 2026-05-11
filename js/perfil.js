@@ -105,10 +105,4 @@ window.addEventListener('load', function() {
         };
     }
 
-    // botao de ajuda
-    const helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
-
-    document.getElementById('helpFab').onclick = function () {
-    helpModal.show();
-};
 });

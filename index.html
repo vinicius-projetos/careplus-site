@@ -15,7 +15,7 @@
 
 <body>
 
-    <div class="bg-orbs"> <!-- Ajuste realizado por Anderson -->
+    <div class="bg-orbs">
         <span class="orb orb-1"></span>
         <span class="orb orb-2"></span>
         <span class="orb orb-3"></span>
@@ -28,12 +28,11 @@
             <p class="notif-msg">Há um <strong>alerta de trânsito</strong> na rota da sua consulta. Considere reagendar
                 ou mudar para teleconsulta.</p>
             <div class="notif-btns">
-                <a href="pages/agendamento.html" class="notif-btn" style="text-decoration:none;">Reagendar</a>
+                <a href="pages/agendamento.html" class="notif-btn">Reagendar</a>
                 <button class="notif-btn">Teleconsulta</button>
                 <button class="notif-btn primary">Confirmar presença</button>
             </div>
-            <button class="notif-close" onclick="document.getElementById('notif').style.display='none'"><i
-                    class="bi bi-x-lg"></i></button>
+            <button class="notif-close" id="notifClose"><i class="bi bi-x-lg"></i></button>
         </div>
     </div>
 
@@ -94,9 +93,9 @@
                     <div class="consulta-topo">
                         <div>
                             <h3>Sua próxima consulta:</h3>
-                            <p><strong>Odontológia</strong></p>
+                            <p><strong>Odontologia</strong></p>
                             <p>Dra. Maria Silva</p>
-                            <p>31 de out ás 14:30</p>
+                            <p>31 de out às 14:30</p>
                             <p>Care Plus Clinic - Vila Olímpia</p>
                             <p>R. Fidêncio Ramos, 302</p>
                         </div>
@@ -107,8 +106,7 @@
                     </div>
                     <div class="consulta-btns">
                         <button class="btn-azul" id="btnConfirm">Confirmar presença</button>
-                        <a href="pages/agendamento.html" class="btn-outline"
-                            style="text-decoration:none; text-align:center;">Reagendar</a>
+                        <a href="pages/agendamento.html" class="btn-outline">Reagendar</a>
                     </div>
                 </div>
 
@@ -138,27 +136,27 @@
                 </div>
                 <p class="tiers-hint"><i class="bi bi-hand-index"></i> Clique em um tier para mudar o tema</p>
                 <div class="tiers">
-                    <div class="tier ativo" data-tier="1" data-cor="#b05a1a" data-cor2="#e08a40" data-bg="#faf6f2">
+                    <div class="tier atual" data-tier="1" data-cor="#b05a1a" data-cor2="#e08a40" data-bg="#faf6f2">
                         <div class="tier-img"><img src="assets/img/tiers/tier1.png" alt="Bronze"></div>
                         <b>Bronze</b><small>0 pts</small>
                     </div>
-                    <div class="tier ativo" data-tier="2" data-cor="#556270" data-cor2="#8395a7" data-bg="#f2f3f5">
+                    <div class="tier" data-tier="2" data-cor="#556270" data-cor2="#8395a7" data-bg="#f2f3f5">
                         <div class="tier-img"><img src="assets/img/tiers/tier2.png" alt="Prata"></div>
                         <b>Prata</b><small>1.000 pts</small>
                     </div>
-                    <div class="tier ativo" data-tier="3" data-cor="#9a7d0a" data-cor2="#d4af37" data-bg="#faf8f0">
+                    <div class="tier" data-tier="3" data-cor="#9a7d0a" data-cor2="#d4af37" data-bg="#faf8f0">
                         <div class="tier-img"><img src="assets/img/tiers/tier3.png" alt="Ouro"></div>
                         <b>Ouro</b><small>2.500 pts</small>
                     </div>
-                    <div class="tier ativo" data-tier="4" data-cor="#0d47a1" data-cor2="#42a5f5" data-bg="#f0f5fb">
+                    <div class="tier" data-tier="4" data-cor="#0d47a1" data-cor2="#42a5f5" data-bg="#f0f5fb">
                         <div class="tier-img"><img src="assets/img/tiers/tier4.png" alt="Diamante"></div>
                         <b>Diamante</b><small>5.000 pts</small>
                     </div>
-                    <div class="tier ativo" data-tier="5" data-cor="#9b1050" data-cor2="#e84393" data-bg="#fdf2f6">
+                    <div class="tier" data-tier="5" data-cor="#9b1050" data-cor2="#e84393" data-bg="#fdf2f6">
                         <div class="tier-img"><img src="assets/img/tiers/tier5.png" alt="Rubi"></div>
                         <b>Rubi</b><small>10.000 pts</small>
                     </div>
-                    <div class="tier ativo" data-tier="6" data-cor="#5b21b6" data-cor2="#a78bfa" data-bg="#f6f2fd">
+                    <div class="tier" data-tier="6" data-cor="#5b21b6" data-cor2="#a78bfa" data-bg="#f6f2fd">
                         <div class="tier-img"><img src="assets/img/tiers/tier6.png" alt="Lendário"></div>
                         <b>Lendário</b><small>25.000 pts</small>
                     </div>
@@ -187,32 +185,25 @@
         <div class="fab-icon"><i class="bi bi-question-lg"></i></div>
     </div>
 
-    <!-- MODAL -->
+    <!-- modal central de ajuda -->
     <div class="modal fade help-modal" id="helpModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-end modal-sm">
             <div class="modal-content help-inner">
-
-                <!-- HEADER -->
                 <div class="modal-header help-header">
                     <h6 class="modal-title">
                         <i class="bi bi-headset"></i> Central de Ajuda
                     </h6>
                     <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
-
-                <!-- BODY -->
                 <div class="modal-body help-body">
                     <div class="help-message bot">
                         Olá! Como posso te ajudar?
                     </div>
                 </div>
-
-                <!-- FOOTER -->
                 <div class="modal-footer help-footer">
                     <input type="text" class="form-control" placeholder="Digite..." />
                     <button class="btn btn-primary">Enviar</button>
                 </div>
-
             </div>
         </div>
     </div>

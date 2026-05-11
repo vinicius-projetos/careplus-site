@@ -32,39 +32,38 @@ window.addEventListener('load', function() {
 
     // gera horarios "aleatorios" pra cada dia (mesmo dia sempre da mesmo resultado)
     function gerarHorarios(dia, mes, ano) {
-        var semente = dia * 31 + mes * 373 + ano;
-        var diaSem = new Date(ano, mes, dia).getDay();
-
         // domingo nao tem
-        if (diaSem === 0) return null;
+        if (new Date(ano, mes, dia).getDay() === 0) return [];
 
+        var semente = dia * 31 + mes * 373 + ano;
         var lista = [];
         for (var i = 0; i < horariosBase.length; i++) {
-            var num = (semente * (i + 1) * 7) % 100;
-            // pega so alguns horarios
-            if (num > 35) {
+            if ((semente * (i + 1) * 7) % 100 > 35) {
                 lista.push({
                     hora: horariosBase[i],
                     clinica: clinicas[(semente + i) % clinicas.length]
                 });
             }
         }
+        return lista;
+    }
 
-        if (lista.length > 0) return lista;
-        return null;
+    // o dia ja passou (anterior a hoje)?
+    function diaJaPassou(dia, mes, ano) {
+        return mes === hoje.getMonth() && ano === hoje.getFullYear() && dia < hoje.getDate();
     }
 
     // o dia tem horario livre?
     function temHorario(dia, mes, ano) {
-        var diaSem = new Date(ano, mes, dia).getDay();
-        if (diaSem === 0) return false;
+        if (diaJaPassou(dia, mes, ano)) return false;
+        return gerarHorarios(dia, mes, ano).length > 0;
+    }
 
-        // dia que ja passou nao conta
-        if (mes === hoje.getMonth() && ano === hoje.getFullYear() && dia < hoje.getDate()) {
-            return false;
-        }
-
-        return gerarHorarios(dia, mes, ano) !== null;
+    // atualiza o destaque do topo com o horario escolhido
+    function atualizarDestaque(h) {
+        horaTexto.textContent = h.hora;
+        clinicaTexto.textContent = '- ' + h.clinica;
+        horarioEscolhido = h;
     }
 
     // mostra os horarios do dia escolhido na lateral
@@ -74,7 +73,7 @@ window.addEventListener('load', function() {
         diaTexto.textContent = nomeDiaSem + ', ' + dia + ' de ' + meses[mes];
 
         // dia sem horario
-        if (!horarios || horarios.length === 0) {
+        if (horarios.length === 0) {
             listaHorarios.innerHTML = '';
             listaHorarios.style.display = 'none';
             avisoVazio.style.display = 'block';
@@ -88,32 +87,20 @@ window.addEventListener('load', function() {
         listaHorarios.innerHTML = '';
 
         // ja deixa o primeiro selecionado
-        horaTexto.textContent = horarios[0].hora;
-        clinicaTexto.textContent = '- ' + horarios[0].clinica;
-        horarioEscolhido = horarios[0];
+        atualizarDestaque(horarios[0]);
 
         // monta cada botao de horario
         for (var i = 0; i < horarios.length; i++) {
+            var h = horarios[i];
             var botao = document.createElement('button');
-            botao.className = 'ag-horario-slot';
-            if (i === 0) botao.classList.add('ativo');
-            botao.innerHTML = '<span class="ag-slot-hora">' + horarios[i].hora + '</span><span class="ag-slot-clinica">' + horarios[i].clinica + '</span>';
-            botao.dataset.hora = horarios[i].hora;
-            botao.dataset.clinica = horarios[i].clinica;
+            botao.className = 'ag-horario-slot' + (i === 0 ? ' ativo' : '');
+            botao.innerHTML = '<span class="ag-slot-hora">' + h.hora + '</span><span class="ag-slot-clinica">' + h.clinica + '</span>';
+            botao.dataset.hora = h.hora;
+            botao.dataset.clinica = h.clinica;
 
-            // ao clicar troca o ativo e atualiza o titulo
             botao.onclick = function() {
-                var todos = listaHorarios.querySelectorAll('.ag-horario-slot');
-                for (var j = 0; j < todos.length; j++) {
-                    todos[j].classList.remove('ativo');
-                }
-                this.classList.add('ativo');
-                horaTexto.textContent = this.dataset.hora;
-                clinicaTexto.textContent = '- ' + this.dataset.clinica;
-                horarioEscolhido = {
-                    hora: this.dataset.hora,
-                    clinica: this.dataset.clinica
-                };
+                marcarUnico(listaHorarios, this, '.ag-horario-slot', 'ativo');
+                atualizarDestaque({ hora: this.dataset.hora, clinica: this.dataset.clinica });
             };
 
             listaHorarios.appendChild(botao);
@@ -127,6 +114,7 @@ window.addEventListener('load', function() {
 
         var primeiroDia = new Date(ano, mes, 1).getDay();
         var totalDias = new Date(ano, mes + 1, 0).getDate();
+        var ehMesAtual = mes === hoje.getMonth() && ano === hoje.getFullYear();
 
         // espacos vazios antes do dia 1
         for (var v = 0; v < primeiroDia; v++) {
@@ -142,39 +130,24 @@ window.addEventListener('load', function() {
             dia.textContent = d;
             dia.dataset.dia = d;
 
-            var jaPassou = mes === hoje.getMonth() && ano === hoje.getFullYear() && d < hoje.getDate();
-            var ehHoje = d === hoje.getDate() && mes === hoje.getMonth() && ano === hoje.getFullYear();
-            var temVaga = temHorario(d, mes, ano);
+            var jaPassou = ehMesAtual && d < hoje.getDate();
+            var ehHoje = ehMesAtual && d === hoje.getDate();
+            var estado = jaPassou ? 'desabilitado' : (temHorario(d, mes, ano) ? 'disponivel' : 'indisponivel');
 
             if (ehHoje) dia.classList.add('hoje');
-
-            if (jaPassou) {
-                dia.classList.add('desabilitado');
-            } else if (!temVaga) {
-                dia.classList.add('indisponivel');
-            } else {
-                dia.classList.add('disponivel');
-            }
+            dia.classList.add(estado);
 
             // se ja tinha um dia selecionado antes, marca de novo
             if (diaEscolhido && diaEscolhido.d === d && diaEscolhido.m === mes && diaEscolhido.a === ano) {
                 dia.classList.add('selecionado');
             }
 
-            // clicar no dia
             dia.onclick = function() {
                 // dias bloqueados nao fazem nada
-                if (this.classList.contains('desabilitado')) return;
-                if (this.classList.contains('vazio')) return;
-                if (this.classList.contains('indisponivel')) return;
+                if (this.matches('.desabilitado, .vazio, .indisponivel')) return;
 
-                var todos = grade.querySelectorAll('.ag-cal-dia');
-                for (var i = 0; i < todos.length; i++) {
-                    todos[i].classList.remove('selecionado');
-                }
-                this.classList.add('selecionado');
-
-                var n = parseInt(this.dataset.dia);
+                marcarUnico(grade, this, '.ag-cal-dia', 'selecionado');
+                var n = Number.parseInt(this.dataset.dia, 10);
                 diaEscolhido = { d: n, m: mesAtual, a: anoAtual };
                 mostrarHorarios(n, mesAtual, anoAtual);
             };
@@ -183,24 +156,16 @@ window.addEventListener('load', function() {
         }
     }
 
-    // botoes de mudar o mes
-    btnVoltar.onclick = function() {
-        mesAtual = mesAtual - 1;
-        if (mesAtual < 0) {
-            mesAtual = 11;
-            anoAtual = anoAtual - 1;
-        }
+    // muda o mes mostrado no calendario (delta = -1 anterior, +1 proximo)
+    function mudarMes(delta) {
+        mesAtual += delta;
+        if (mesAtual < 0) { mesAtual = 11; anoAtual--; }
+        else if (mesAtual > 11) { mesAtual = 0; anoAtual++; }
         montarCalendario(mesAtual, anoAtual);
-    };
+    }
 
-    btnAvancar.onclick = function() {
-        mesAtual = mesAtual + 1;
-        if (mesAtual > 11) {
-            mesAtual = 0;
-            anoAtual = anoAtual + 1;
-        }
-        montarCalendario(mesAtual, anoAtual);
-    };
+    btnVoltar.onclick = function() { mudarMes(-1); };
+    btnAvancar.onclick = function() { mudarMes(1); };
 
     // abre a tela ja montada
     montarCalendario(mesAtual, anoAtual);
@@ -214,21 +179,7 @@ window.addEventListener('load', function() {
                 var nomeDiaSem = diasSemana[new Date(diaEscolhido.a, diaEscolhido.m, diaEscolhido.d).getDay()];
                 modalSub.textContent = nomeDiaSem + ', ' + diaEscolhido.d + ' de ' + meses[diaEscolhido.m] + ' — ' + horarioEscolhido.hora + ' — ' + horarioEscolhido.clinica;
             }
-            modal.classList.add('show');
-            modal.setAttribute('aria-hidden', 'false');
-            setTimeout(function() {
-                modal.classList.remove('show');
-                modal.setAttribute('aria-hidden', 'true');
-            }, 2500);
-        };
-    }
-
-    // fechar a notificacao do topo
-    var fecharAviso = document.getElementById('notifClose');
-    var aviso = document.getElementById('notifAlerta');
-    if (fecharAviso && aviso) {
-        fecharAviso.onclick = function() {
-            aviso.style.display = 'none';
+            mostrarModalGlass(modal);
         };
     }
 
@@ -239,9 +190,4 @@ window.addEventListener('load', function() {
             this.parentElement.style.display = 'none';
         };
     }
-   const helpModal = new bootstrap.Modal(document.getElementById('helpModal'));
-
-    document.getElementById('helpFab').onclick = function () {
-    helpModal.show();
-};
 });
