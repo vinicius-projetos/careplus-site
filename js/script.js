@@ -2,115 +2,85 @@
 
 window.addEventListener('load', function () {
 
-    // menu da esquerda - marca o item clicado como ativo
-    var itens = document.querySelectorAll('.sb-menu li:not(.sep)');
-    for (var i = 0; i < itens.length; i++) {
-        itens[i].onclick = function () {
-            var todos = document.querySelectorAll('.sb-menu li');
-            for (var j = 0; j < todos.length; j++) {
-                todos[j].classList.remove('active');
-            }
-            this.classList.add('active');
-        };
-    }
-
     // botao de confirmar presenca
     var botao = document.getElementById('btnConfirm');
     var modal = document.getElementById('confirmModal');
+    var aviso = document.getElementById('notif');
+    var botaoNotif = aviso && aviso.querySelector('.notif-btn.primary');
 
-    function abrirModal() {
-        if (!modal) return;
-        modal.classList.add('show');
-        modal.setAttribute('aria-hidden', 'false');
-        // fecha sozinho depois de 2.5 segundos
-        setTimeout(function () {
-            modal.classList.remove('show');
-            modal.setAttribute('aria-hidden', 'true');
-        }, 2500);
+    // marca um botao como "confirmado" (cor verde, desabilitado, com checkmark)
+    function marcarConfirmado(el, espacamento) {
+        if (!el) return;
+        el.innerHTML = '<i class="bi bi-check-circle-fill me-' + espacamento + '"></i>Presença confirmada' + (espacamento === 2 ? '!' : '');
+        el.classList.add('btn-confirmado');
+        el.disabled = true;
+    }
+
+    function fecharNotif() {
+        if (aviso) aviso.style.display = 'none';
+    }
+
+    // wrappers do localStorage (alguns navegadores em modo privado podem nao ter)
+    function salvarPresenca() {
+        try { localStorage.setItem('presencaConfirmada', '1'); } catch (e) { /* ignora */ }
+    }
+    function jaConfirmou() {
+        try { return localStorage.getItem('presencaConfirmada') === '1'; } catch (e) { return false; }
     }
 
     function confirmar() {
-        if (botao.disabled) return;
-        botao.innerHTML = '<i class="bi bi-check-circle-fill me-2"></i>Presença confirmada!';
-        botao.style.background = 'linear-gradient(135deg,#16a34a,#22c55e)';
-        botao.style.borderColor = 'transparent';
-        botao.style.boxShadow = '0 4px 14px rgba(22,163,74,.35),inset 0 1px 0 rgba(255,255,255,.25)';
-        botao.disabled = true;
-        abrirModal();
+        if (botao && botao.disabled) return;
+        marcarConfirmado(botao, 2);
+        marcarConfirmado(botaoNotif, 1);
+        salvarPresenca();
+        mostrarModalGlass(modal);
+        fecharNotif();
     }
 
-    botao.onclick = confirmar;
+    if (botao) botao.onclick = confirmar;
 
-    // notificacao do topo
-    var aviso = document.getElementById('notif');
+    // notificacao do topo - botoes
     var botoesAviso = document.querySelectorAll('.notif-btn');
     for (var k = 0; k < botoesAviso.length; k++) {
-        botoesAviso[k].onclick = function () {
+        botoesAviso[k].onclick = function (ev) {
             if (this.classList.contains('primary')) {
+                ev.preventDefault();
                 confirmar();
+                return;
             }
-            aviso.style.display = 'none';
+            fecharNotif();
         };
     }
 
-    // botao de ajuda flutuante
-    document.getElementById('helpFab').onclick = function () {
-        alert('Central de Ajuda - Em breve!');
-    };
+    var fecharX = document.getElementById('notifClose');
+    if (fecharX) fecharX.onclick = fecharNotif;
+
+    // se ja confirmou antes, mantem o cartao confirmado e esconde a notif
+    if (jaConfirmou()) {
+        marcarConfirmado(botao, 2);
+        fecharNotif();
+    }
 
     // tiers (bronze, prata, etc) - clica e troca o tema da pagina
+    // obs: o estilo arco-iris do tier 6 e cuidado pelo CSS via body[data-tier="6"]
+    var listaTiers = document.querySelector('.tiers');
+    var tierAtualImg = document.getElementById('tierAtualImg');
+    var raiz = document.documentElement;
+
+    function aplicarTema(tier) {
+        var num = Number.parseInt(tier.dataset.tier, 10);
+
+        marcarUnico(listaTiers, tier, '.tier', 'atual');
+        tierAtualImg.src = 'assets/img/tiers/tier' + num + '.png';
+
+        document.body.style.background = tier.dataset.bg;
+        document.body.dataset.tier = num;
+        raiz.style.setProperty('--cor', tier.dataset.cor);
+        raiz.style.setProperty('--cor2', tier.dataset.cor2);
+    }
+
     var tiers = document.querySelectorAll('.tier');
     for (var t = 0; t < tiers.length; t++) {
-        tiers[t].onclick = function () {
-            var cor = this.dataset.cor;
-            var cor2 = this.dataset.cor2;
-            var fundo = this.dataset.bg;
-            var num = parseInt(this.dataset.tier);
-
-            // tira o "atual" de todos e poe so neste
-            var todos = document.querySelectorAll('.tier');
-            for (var x = 0; x < todos.length; x++) {
-                todos[x].classList.remove('atual');
-            }
-            this.classList.add('atual');
-
-            // troca a imagenzinha do mascote do topo
-            document.getElementById('tierAtualImg').src = 'assets/img/tiers/tier' + num + '.png';
-
-            // muda o fundo e as cores do site
-            document.body.style.background = fundo;
-            document.body.dataset.tier = num;
-            document.documentElement.style.setProperty('--cor', cor);
-            document.documentElement.style.setProperty('--cor2', cor2);
-
-            // se for o tier 6 (lendario), poe arco-iris na barra
-            var barra = document.querySelector('.barra-fill');
-            if (num === 6) {
-                barra.style.background = 'var(--rainbow)';
-                barra.style.backgroundSize = '300% 100%';
-                barra.style.animation = 'rainbowShift 3s linear infinite';
-            } else {
-                barra.style.background = '';
-                barra.style.backgroundSize = '';
-                barra.style.animation = '';
-
-                // Selecionando os botões pelos IDs
-                const btnCalendario = document.getElementById('btnCalendario');
-                const btnClinicas = document.getElementById('btnClinicas');
-
-                // Ação para o calendário
-                btnCalendario.addEventListener('click', () => {
-                    console.log("Botão calendário clicado!");
-                    // Aqui vai sua lógica para adicionar ao calendário
-                });
-
-                // Ação para as clínicas
-                btnClinicas.addEventListener('click', () => {
-                    console.log("Abrindo mapa de clínicas...");
-                    // Aqui você chama sua função de mapa, ex: abrirMapa();
-                });
-
-            }
-        };
+        tiers[t].onclick = function () { aplicarTema(this); };
     }
 });

@@ -1,7 +1,7 @@
 /* estilos da pagina de perfil */
 .glass-card.editando { border-color: rgba(0,59,113,.2); }
 
-/* avatarzao do topo */
+/* avatar do topo */
 .pf-avatar-grande { width: 80px; height: 80px; flex-shrink: 0; }
 
 /* barra de pontos da barra de cima */

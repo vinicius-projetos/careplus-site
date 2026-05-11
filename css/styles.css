@@ -7,6 +7,14 @@
     --rainbow-full: linear-gradient(90deg, #ff3b3b, #ff9500, #ffd60a, #34c759, #00c7be, #0a84ff, #5e5ce6, #bf5af2, #ff375f, #ff3b3b);
     --rainbow-conic: conic-gradient(from 0deg, #ff3b3b, #ff9500, #ffd60a, #34c759, #00c7be, #0a84ff, #5e5ce6, #bf5af2, #ff375f, #ff3b3b);
 }
+
+/* cores do tema por tier (aplicadas via body[data-tier]) */
+body[data-tier="1"] { --cor: #b05a1a; --cor2: #e08a40; }
+body[data-tier="2"] { --cor: #556270; --cor2: #8395a7; }
+body[data-tier="3"] { --cor: #9a7d0a; --cor2: #d4af37; }
+body[data-tier="4"] { --cor: #0d47a1; --cor2: #42a5f5; }
+body[data-tier="5"] { --cor: #9b1050; --cor2: #e84393; }
+body[data-tier="6"] { --cor: #5b21b6; --cor2: #a78bfa; }
 @keyframes spin360 { to { transform: rotate(360deg); } }
 @keyframes pulse { 0%,100% { opacity: .3; transform: scale(1); } 50% { opacity: .7; transform: scale(1.1); } }
 @keyframes float { 50% { transform: translateY(-6px); } }
@@ -43,6 +51,7 @@ body {
     font-family: inherit; white-space: nowrap;
     box-shadow: inset 0 1px 0 rgba(255,255,255,.8);
     backdrop-filter: blur(10px);
+    text-decoration: none; text-align: center;
 }
 .notif-btn:hover { background: rgba(255,255,255,.95); transform: translateY(-1px); }
 .notif-btn.primary, .notif-btn.primary:hover {
@@ -199,7 +208,11 @@ main { flex: 1; padding: 24px 32px 30px; }
 }
 .btn-azul { background: var(--cor); color: #fff; border: none; }
 .btn-azul:hover { opacity: .88; }
-.btn-outline { background: transparent; color: var(--cor); border: 1.5px solid #c7d5e6; }
+.btn-outline {
+    background: transparent; color: var(--cor); border: 1.5px solid #c7d5e6;
+    text-decoration: none; text-align: center;
+    display: inline-flex; align-items: center; justify-content: center;
+}
 .btn-outline:hover { background: #f0f5fb; border-color: var(--cor); }
 
 /* botoes de acoes rapidas */
@@ -544,4 +557,14 @@ main { flex: 1; padding: 24px 32px 30px; }
         bottom: 70px;
         width: calc(100% - 20px);
     }
+}
+
+/* estado "presenca confirmada" - usado no botao do cartao e da notificacao */
+.btn-confirmado {
+    background: linear-gradient(135deg, #16a34a, #22c55e) !important;
+    border-color: transparent !important;
+    color: #fff !important;
+    box-shadow: 0 4px 14px rgba(22, 163, 74, .35),
+                inset 0 1px 0 rgba(255, 255, 255, .25) !important;
+    cursor: default;
 }
